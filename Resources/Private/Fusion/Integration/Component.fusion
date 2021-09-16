@@ -1,0 +1,36 @@
+prototype(Carbon.SliderWrapper:Component) < prototype(Neos.Neos:ContentComponent) {
+    contentCollectionRenderer = Neos.Neos:ContentCollectionRenderer
+    count = ${q(node).children().count()}
+    editable = ${node.context.inBackend}
+
+    # Add here your Fusion Prototype
+    type = null
+
+    content = Neos.Fusion:Loop {
+        prototype(Neos.Neos:ContentElementWrapping) {
+            @if.wrapping = false
+        }
+        items = ${q(node).children()}
+        itemRenderer = Neos.Neos:ContentCase
+        itemName = 'node'
+        iterationName = 'iterator'
+    }
+
+    renderer = afx`<Carbon.SliderWrapper:Presentation.Wrapper {...props} />`
+
+    @context.type = ${this.type}
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            collection = ${node}
+            type = ${type}
+        }
+        entryTags {
+            1 = ${Neos.Caching.descendantOfTag(node)}
+            2 = ${Neos.Caching.nodeTag(node)}
+        }
+        maximumLifetime = ${q(node).context({'invisibleContentShown': true}).children().cacheLifetime()}
+    }
+
+    @exceptionHandler = 'Neos\\Neos\\Fusion\\ExceptionHandlers\\NodeWrappingHandler'
+}

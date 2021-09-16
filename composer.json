@@ -1,0 +1,39 @@
+{
+    "name": "carbon/sliderwrapper",
+    "type": "neos-carbon",
+    "description": "A small Fusion prototype to create a wrapper for editing slider in the backend",
+    "license": "GPL-3.0",
+    "keywords": [
+        "flow",
+        "neos",
+        "fusion",
+        "helper",
+        "carbon",
+        "backend"
+    ],
+    "require": {
+        "neos/neos": "^5.3 || ^7.0",
+        "neos/fusion-afx": "^1.4 || ^7.0",
+        "sitegeist/slipstream": "^1.1 || ^2.1",
+        "carbon/notification": "^2.2"
+    },
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "hellp@uhlmann.pro",
+            "homepage": "https://uhlmann.pro",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Carbon\\SliderWrapper\\": "Classes"
+        }
+    },
+    "extra": {
+        "installer-name": "Carbon.SliderWrapper",
+        "neos": {
+            "package-key": "Carbon.SliderWrapper"
+        }
+    }
+}
