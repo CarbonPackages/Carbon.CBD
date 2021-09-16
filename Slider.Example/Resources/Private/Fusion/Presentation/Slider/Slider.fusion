@@ -1,0 +1,50 @@
+prototype(Slider.Example:Presentation.Slider) < prototype(Neos.Fusion:Component) {
+
+    content = null
+    count = 0
+
+    renderer = afx`
+        <div class="slider">
+            <script data-slipstream src='https://unpkg.com/@glidejs/glide'></script>
+            <link data-slipstream rel='stylesheet' href='https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css' />
+            <link data-slipstream rel='stylesheet' href='https://unpkg.com/@glidejs/glide/dist/css/glide.theme.min.css' />
+            <script data-slipstream='//body'>
+                {File.readFile('resource://Slider.Example/Private/Fusion/Presentation/Slider/Slider.js')}
+            </script>
+            <style data-slipstream>
+                {File.readFile('resource://Slider.Example/Private/Fusion/Presentation/Slider/Slider.css')}
+            </style>
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <div class="glide__slides">
+                        {props.content}
+                    </div>
+                </div>
+                <div data-glide-el='controls'>
+                    <button class={BEM.modifier('glide__arrow', 'prev')} data-glide-dir='<'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'>
+                            <path d='M0 12l10.975 11 2.848-2.828-6.176-6.176H24v-3.992H7.646l6.176-6.176L10.975 1 0 12z'></path>
+                        </svg>
+                    </button>
+
+                    <button class={BEM.modifier('glide__arrow', 'next')} data-glide-dir='>'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'>
+                            <path d='M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z'></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class='glide__bullets' data-glide-el='controls[nav]'>
+                    <Neos.Fusion:Loop items={Array.range(1, props.count)}>
+                        <button class='glide__bullet' data-glide-dir={'=' + iterator.index}></button>
+                    </Neos.Fusion:Loop>
+                </div>
+            </div>
+            <p style="margin:2rem 0 0">
+                Initialize as <select class="slider__select">
+                    <option value="slider" selected="">slider</option>
+                    <option value="carousel">carousel</option>
+                </select> type
+            </p>
+        </div>
+    `
+}

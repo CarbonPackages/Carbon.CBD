@@ -1,0 +1,8 @@
+prototype(Slider.Example:Content.Slider.Item) < prototype(Neos.Neos:ContentComponent) {
+    content = Neos.Neos:Editable {
+        property = 'title'
+        block = false
+    }
+
+    renderer = afx`<Slider.Example:Presentation.Slider.Item {...props} />`
+}

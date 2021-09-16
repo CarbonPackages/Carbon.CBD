@@ -1,0 +1,12 @@
+{
+    "name": "slider/example",
+    "type": "neos-plugin",
+    "require": {
+        "Slider/Example": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slider\\Example\\": "Classes"
+        }
+    }
+}
