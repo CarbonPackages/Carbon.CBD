@@ -35,5 +35,24 @@
         "neos": {
             "package-key": "Carbon.SliderWrapper"
         }
+    },
+    "archive": {
+        "exclude": [
+            ".github",
+            ".editorconfig",
+            ".eslintignore",
+            ".eslintrc",
+            ".gitattributes",
+            ".gitignore",
+            ".nvmrc",
+            ".postcssrc.yml",
+            ".prettierignore",
+            ".prettierrc",
+            ".stylelintrc",
+            ".yarnclean",
+            "CODE_OF_CONDUCT.md",
+            "package.json",
+            "yarn.lock"
+        ]
     }
 }

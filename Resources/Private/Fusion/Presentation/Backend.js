@@ -1,18 +1,1 @@
-const NAMESPACE = 'carbon-slider-wrapper';
-const BACKEND_EDIT_CLASS = NAMESPACE + '--edit';
-[...document.querySelectorAll('.' + NAMESPACE)].forEach((element) => {
-  const BUTTON = element.querySelector(`.${NAMESPACE}__switcher`);
-  const LIVE = element.querySelector(`.${NAMESPACE}__live`);
-  if (BUTTON) {
-    BUTTON.addEventListener('click', () => {
-      if (element.classList.contains(BACKEND_EDIT_CLASS)) {
-        window.location.reload();
-        return;
-      }
-      if (LIVE) {
-        LIVE.remove();
-      }
-      element.classList.add(BACKEND_EDIT_CLASS);
-    });
-  }
-});
+(()=>{var r="carbon-slider-wrapper",s=r+"--edit";[...document.querySelectorAll("."+r)].forEach(c=>{let o=c.querySelector(`.${r}__switcher`),i=c.querySelector(`.${r}__live`);o&&o.addEventListener("click",()=>{if(c.classList.contains(s)){window.location.reload();return}i&&i.remove(),c.classList.add(s)})});})();
