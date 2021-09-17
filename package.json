@@ -1,0 +1,44 @@
+{
+  "name": "carbon.sliderwrapper.example",
+  "description": "Dependencies for Carbon.SliderWrapper example",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CarbonPackages/Carbon.SliderWrapper.git"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "ie 11",
+    "not ie <= 10",
+    "not ie_mob <= 10",
+    "not bb <= 10",
+    "not op_mob <= 12.1"
+  ],
+  "dependencies": {
+    "@glidejs/glide": "^3.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.4",
+    "cssnano": "^5.0.8",
+    "esbuild": "^0.12.28",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.2",
+    "postcss-nested": "^5.0.6",
+    "prettier": "^2.4.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
+  },
+  "scripts": {
+    "css": "postcss Slider.Example/Resources/Private/Fusion/*.pcss --no-map --ext css --dir Slider.Example/Resources/Public",
+    "js": "esbuild Slider.Example/Resources/Private/Fusion/*.js --bundle --minify --outdir=Slider.Example/Resources/Public",
+    "build": "yarn css | yarn js",
+    "start": "yarn build"
+  }
+}

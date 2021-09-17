@@ -3,17 +3,17 @@ prototype(Slider.Example:Presentation.Slider) < prototype(Neos.Fusion:Component)
     content = null
     count = 0
 
+    script = Neos.Fusion:ResourceUri {
+        path = 'resource://Slider.Example/Public/Slider.js'
+    }
+    style = Neos.Fusion:ResourceUri {
+        path = 'resource://Slider.Example/Public/Slider.css'
+    }
+
     renderer = afx`
         <div class="slider">
-            <script data-slipstream src='https://unpkg.com/@glidejs/glide'></script>
-            <link data-slipstream rel='stylesheet' href='https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css' />
-            <link data-slipstream rel='stylesheet' href='https://unpkg.com/@glidejs/glide/dist/css/glide.theme.min.css' />
-            <script data-slipstream='//body'>
-                {File.readFile('resource://Slider.Example/Private/Fusion/Presentation/Slider/Slider.js')}
-            </script>
-            <style data-slipstream>
-                {File.readFile('resource://Slider.Example/Private/Fusion/Presentation/Slider/Slider.css')}
-            </style>
+            <script data-slipstream src={props.script} defer></script>
+            <link data-slipstream rel='stylesheet' href={props.style} />
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <div class="glide__slides">

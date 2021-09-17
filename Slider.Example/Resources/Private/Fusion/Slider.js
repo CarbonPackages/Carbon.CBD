@@ -1,3 +1,5 @@
+import Glide from "@glidejs/glide";
+
 [...document.querySelectorAll(".slider")].forEach((element) => {
     const select = element.querySelector(".slider__select");
     const slider = element.querySelector(".glide");
