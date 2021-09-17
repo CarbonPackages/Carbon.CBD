@@ -26,17 +26,23 @@ prototype(Carbon.SliderWrapper:Presentation.Wrapper) < prototype(Neos.Fusion:Com
 
     renderer = afx`
         <div class={BEM.modifier('carbon-slider-wrapper', {edit: !props.count})} @if.set={props.editable}>
-            <Neos.Fusion:Renderer type={props.type} element.content={props.content} element.count={props.count} />
+            <Neos.Fusion:Augmenter class='carbon-slider-wrapper__live'>
+                <Neos.Fusion:Renderer type={props.type} element.content={props.content} element.count={props.count} />
+            </Neos.Fusion:Augmenter>
             <div
-                class='carbon-slider-wrapper__content'
+                class='carbon-slider-wrapper__edit'
                 data-carbon-warning={props.l18n.noSlides}
                 data-__neos-insertion-anchor
             >
                 {props.contentCollectionRenderer}
             </div>
             <button type='button' class='carbon-slider-wrapper__switcher'>
-                <span>{props.l18n.edit}</span>
-                <span>{props.l18n.live}</span>
+                <span class={BEM.modifier('carbon-slider-wrapper__text', 'edit')}>
+                    {props.l18n.edit}
+                </span>
+                <span class={BEM.modifier('carbon-slider-wrapper__text', 'live')}>
+                    {props.l18n.live}
+                </span>
             </button>
             <style data-slipstream>
                 {File.readFile('resource://Carbon.SliderWrapper/Private/Fusion/Presentation/Backend.css')}
