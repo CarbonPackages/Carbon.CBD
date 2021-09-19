@@ -1,3 +1,0 @@
-prototype(Slider.Example:Content.Slider) < prototype(Carbon.SliderWrapper:Component) {
-    type = 'Slider.Example:Presentation.Slider'
-}

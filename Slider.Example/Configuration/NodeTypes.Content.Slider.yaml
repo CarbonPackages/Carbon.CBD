@@ -1,3 +1,0 @@
-"Slider.Example:Content.Slider":
-  superTypes:
-    "Carbon.SliderWrapper:Mixin.Slider": true

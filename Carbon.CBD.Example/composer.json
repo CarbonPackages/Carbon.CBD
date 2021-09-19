@@ -1,0 +1,18 @@
+{
+    "name": "carbon/cbd-example",
+    "type": "neos-plugin",
+    "require": {
+        "carbon/cbd": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Carbon\\CBD\\Example\\": "Classes"
+        }
+    },
+    "extra": {
+        "installer-name": "Carbon.CBD.Example",
+        "neos": {
+            "package-key": "Carbon.CBD.Example"
+        }
+    },
+}

@@ -1,6 +1,9 @@
-"Slider.Example:Content.Slider.Item":
+"Carbon.CBD.Example:Content.Slider.Item":
   superTypes:
-    "Carbon.SliderWrapper:Mixin.Slider.Item": true
+    "Carbon.CBD:Mixin.Element.Item": true
+  ui:
+    label: Slide
+    icon: image
   properties:
     title:
       type: string

@@ -1,0 +1,5 @@
+prototype(Carbon.CBD.Example:Presentation.Slider.Item) < prototype(Neos.Fusion:Component) {
+    renderer = afx`
+        <div class="glide__slide">{props.content}</div>
+    `
+}

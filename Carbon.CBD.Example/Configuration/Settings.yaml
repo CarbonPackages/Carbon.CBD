@@ -2,4 +2,4 @@ Neos:
   Neos:
     fusion:
       autoInclude:
-        Slider.Example: true
+        Carbon.CBD.Example: true

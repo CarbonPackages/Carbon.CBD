@@ -1,4 +1,4 @@
-prototype(Slider.Example:Presentation.Slider) < prototype(Neos.Fusion:Component) {
+prototype(Carbon.CBD.Example:Presentation.Slider) < prototype(Neos.Fusion:Component) {
 
     content = null
     count = 0
@@ -10,11 +10,16 @@ prototype(Slider.Example:Presentation.Slider) < prototype(Neos.Fusion:Component)
         path = 'resource://Slider.Example/Public/Slider.css'
     }
 
+    settings = Neos.Fusion:DataStructure {
+        focusAt = 'center'
+        perView = 3
+    }
+
     renderer = afx`
         <div class="slider">
             <script data-slipstream src={props.script} defer></script>
             <link data-slipstream rel='stylesheet' href={props.style} />
-            <div class="glide">
+            <div class="glide" data-glide={Json.stringify(props.settings)}>
                 <div class="glide__track" data-glide-el="track">
                     <div class="glide__slides">
                         {props.content}
