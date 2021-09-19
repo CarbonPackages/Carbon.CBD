@@ -1,0 +1,3 @@
+prototype(CBD.Example.Slider:Content.Slider) < prototype(Carbon.CBD:Component) {
+    type = 'CBD.Example.Slider:Presentation.Slider'
+}

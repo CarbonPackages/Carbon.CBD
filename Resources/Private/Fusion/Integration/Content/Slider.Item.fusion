@@ -1,8 +1,0 @@
-prototype(Carbon.CBD.Example:Content.Slider.Item) < prototype(Neos.Neos:ContentComponent) {
-    content = Neos.Neos:Editable {
-        property = 'title'
-        block = false
-    }
-
-    renderer = afx`<Carbon.CBD.Example:Presentation.Slider.Item {...props} />`
-}

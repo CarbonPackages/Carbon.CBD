@@ -1,18 +1,18 @@
 {
-    "name": "carbon/cbd-example",
+    "name": "cbd/example-slider",
     "type": "neos-plugin",
     "require": {
         "carbon/cbd": "*"
     },
     "autoload": {
         "psr-4": {
-            "Carbon\\CBD\\Example\\": "Classes"
+            "CBD\\Example\\Slider\\": "Classes"
         }
     },
     "extra": {
-        "installer-name": "Carbon.CBD.Example",
+        "installer-name": "CBD.Example.Slider",
         "neos": {
-            "package-key": "Carbon.CBD.Example"
+            "package-key": "CBD.Example.Slider"
         }
     }
 }

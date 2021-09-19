@@ -1,11 +1,11 @@
 {
-  "name": "carbon.sliderwrapper.example",
-  "description": "Dependencies for Carbon.SliderWrapper example",
+  "name": "carbon.cbd.example",
+  "description": "Dependencies for Carbon.CBD example",
   "license": "GPL-3.0-or-later",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/CarbonPackages/Carbon.SliderWrapper.git"
+    "url": "git://github.com/CarbonPackages/Carbon.CBD.git"
   },
   "browserslist": [
     "> 0.5%",
@@ -36,9 +36,10 @@
     "stylelint-config-standard": "^22.0.0"
   },
   "scripts": {
-    "css": "postcss Carbon.CBD.Example/Resources/Private/Fusion/*.pcss --no-map --ext css --dir Carbon.CBD.Example/Resources/Public",
-    "js": "esbuild Carbon.CBD.Example/Resources/Private/Fusion/*.js --bundle --minify --outdir=Carbon.CBD.Example/Resources/Public",
-    "build": "yarn css | yarn js",
+    "slider:css": "postcss CBD.Example.Slider/Resources/Private/Fusion/*.pcss --no-map --ext css --dir CBD.Example.Slider/Resources/Public",
+    "slider:js": "esbuild CBD.Example.Slider/Resources/Private/Fusion/*.js --bundle --minify --outdir=CBD.Example.Slider/Resources/Public",
+    "slider": "yarn slider:css | yarn slider:js",
+    "build": "yarn slider",
     "start": "yarn build"
   }
 }

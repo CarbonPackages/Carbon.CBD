@@ -1,0 +1,6 @@
+'CBD.Example.Slider:Content.Slider':
+  superTypes:
+    'Carbon.CBD:Mixin.Element': true
+  ui:
+    label: Slider
+    icon: exchange-alt

@@ -1,6 +1,6 @@
-"Carbon.CBD.Example:Content.Slider.Item":
+'CBD.Example.Slider:Content.Slider.Item':
   superTypes:
-    "Carbon.CBD:Mixin.Element.Item": true
+    'Carbon.CBD:Mixin.Element.Item': true
   ui:
     label: Slide
     icon: image
@@ -14,7 +14,7 @@
         inlineEditable: true
         inline:
           editorOptions:
-            placeholder: Text eingeben
+            placeholder: Enter text
             autoparagraph: false
             inlineStyling:
               linkStyle: true
