@@ -3,13 +3,6 @@ prototype(CBD.Example.Slider:Presentation.Slider) < prototype(Neos.Fusion:Compon
     content = null
     count = 0
 
-    script = Neos.Fusion:ResourceUri {
-        path = 'resource://CBD.Example.Slider/Public/Slider.js'
-    }
-    style = Neos.Fusion:ResourceUri {
-        path = 'resource://CBD.Example.Slider/Public/Slider.css'
-    }
-
     settings = Neos.Fusion:DataStructure {
         focusAt = 'center'
         perView = 3
@@ -17,8 +10,10 @@ prototype(CBD.Example.Slider:Presentation.Slider) < prototype(Neos.Fusion:Compon
 
     renderer = afx`
         <div class="slider">
-            <script data-slipstream src={props.script} defer></script>
-            <link data-slipstream rel='stylesheet' href={props.style} />
+            <Carbon.IncludeAssets:Collection
+                assetPackage='CBD.Example.Slider'
+                collection={['Slider.css[data-slipstream]', 'Slider.js[data-slipstream defer]']}
+            />
             <div class="glide" data-glide={Json.stringify(props.settings)}>
                 <div class="glide__track" data-glide-el="track">
                     <div class="glide__slides">

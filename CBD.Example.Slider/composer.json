@@ -2,7 +2,8 @@
     "name": "cbd/example-slider",
     "type": "neos-plugin",
     "require": {
-        "carbon/cbd": "*"
+        "carbon/cbd": "*",
+        "carbon/includeassets": "*"
     },
     "autoload": {
         "psr-4": {
