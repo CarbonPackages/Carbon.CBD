@@ -4,10 +4,10 @@ prototype(Carbon.CBD.Example:Presentation.Slider) < prototype(Neos.Fusion:Compon
     count = 0
 
     script = Neos.Fusion:ResourceUri {
-        path = 'resource://Slider.Example/Public/Slider.js'
+        path = 'resource://Carbon.CBD.Example/Public/Slider.js'
     }
     style = Neos.Fusion:ResourceUri {
-        path = 'resource://Slider.Example/Public/Slider.css'
+        path = 'resource://Carbon.CBD.Example/Public/Slider.css'
     }
 
     settings = Neos.Fusion:DataStructure {
