@@ -15,6 +15,16 @@
                 <source>No content has been created yet</source>
                 <target>No content has been created yet</target>
             </trans-unit>
+            <group id="element.label" restype="x-gettext-plurals">
+                <trans-unit id="element.label[0]" xml:space="preserve">
+                    <source>{0} element</source>
+                    <target>{0} element</target>
+                </trans-unit>
+                <trans-unit id="element.label[1]" xml:space="preserve">
+                    <source>{0} elements</source>
+                    <target>{0} elements</target>
+                </trans-unit>
+            </group>
         </body>
     </file>
 </xliff>

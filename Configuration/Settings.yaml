@@ -3,3 +3,8 @@ Neos:
     fusion:
       autoInclude:
         Carbon.CBD: true
+    userInterface:
+      translation:
+        autoInclude:
+          Carbon.CBD:
+            - Main
