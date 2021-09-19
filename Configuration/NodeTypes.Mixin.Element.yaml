@@ -7,4 +7,3 @@
   constraints:
     nodeTypes:
       '*': false
-      'Carbon.CBD:Mixin.Element.Item': true
