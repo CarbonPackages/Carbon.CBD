@@ -4,3 +4,6 @@
   ui:
     label: Slider
     icon: exchange-alt
+  constraints:
+    nodeTypes:
+      'CBD.Example.Slider:Content.Slider.Item': true
