@@ -36,8 +36,8 @@
     "stylelint-config-standard": "^22.0.0"
   },
   "scripts": {
-    "css": "postcss Slider.Example/Resources/Private/Fusion/*.pcss --no-map --ext css --dir Slider.Example/Resources/Public",
-    "js": "esbuild Slider.Example/Resources/Private/Fusion/*.js --bundle --minify --outdir=Slider.Example/Resources/Public",
+    "css": "postcss Carbon.CBD.Example/Resources/Private/Fusion/*.pcss --no-map --ext css --dir Carbon.CBD.Example/Resources/Public",
+    "js": "esbuild Carbon.CBD.Example/Resources/Private/Fusion/*.js --bundle --minify --outdir=Carbon.CBD.Example/Resources/Public",
     "build": "yarn css | yarn js",
     "start": "yarn build"
   }
