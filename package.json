@@ -18,7 +18,8 @@
     "not op_mob <= 12.1"
   ],
   "dependencies": {
-    "@glidejs/glide": "^3.4.1"
+    "@glidejs/glide": "^3.4.1",
+    "leaflet": "^1.7.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.4",
@@ -39,7 +40,10 @@
     "slider:css": "postcss CBD.Example.Slider/Resources/Private/Fusion/*.pcss --no-map --ext css --dir CBD.Example.Slider/Resources/Public/Styles",
     "slider:js": "esbuild CBD.Example.Slider/Resources/Private/Fusion/*.js --bundle --minify --outdir=CBD.Example.Slider/Resources/Public/Scripts",
     "slider": "yarn slider:css | yarn slider:js",
-    "build": "yarn slider",
+    "map:css": "postcss CBD.Example.Map/Resources/Private/Fusion/*.pcss --no-map --ext css --dir CBD.Example.Map/Resources/Public/Styles",
+    "map:js": "esbuild CBD.Example.Map/Resources/Private/Fusion/*.js --bundle --minify --outdir=CBD.Example.Map/Resources/Public/Scripts",
+    "map": "yarn map:css | yarn map:js",
+    "build": "yarn slider | yarn map",
     "start": "yarn build"
   }
 }

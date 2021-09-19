@@ -1,0 +1,9 @@
+'CBD.Example.Map:Content.Map':
+  superTypes:
+    'Carbon.CBD:Mixin.Element': true
+  ui:
+    label: Map
+    icon: map-marked
+  constraints:
+    nodeTypes:
+      'CBD.Example.Slider:Content.Map.Address': true

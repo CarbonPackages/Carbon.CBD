@@ -1,0 +1,12 @@
+prototype(CBD.Example.Map:Content.Map) < prototype(Carbon.CBD:Component) {
+    type = 'CBD.Example.Map:Presentation.Map'
+    data = Neos.Fusion:DataStructure {
+        coordinates = Neos.Fusion:Map {
+            items = ${q(node).children('[instanceof CBD.Example.Map:Content.Map.Address]')}
+            itemRenderer = Neos.Fusion:DataStructure {
+                lat = ${q(item).property('lat')}
+                lon = ${q(item).property('lon')}
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+prototype(CBD.Example.Map:Presentation.Map) < prototype(Neos.Fusion:Component) {
+    content = null
+    data = Neos.Fusion:DataStructure
+    coordinates = ${this.data.coordinates}
+    coordinates.@process.calculate = ${Carbon.Array.check(value) ? CBD.Map.centerFromCoordinates(value) : null}
+
+    settings = Neos.Fusion:DataStructure {
+    }
+
+    @if.hasContent = ${this.content}
+
+    renderer = afx`
+        <div
+            class='map'
+            x-style='visibility:hidden'
+            data-map={Json.stringify(Array.concat({'center': props.coordinates}, props.settings))}
+        >
+            <Carbon.IncludeAssets:Collection
+                assetPackage='CBD.Example.Map'
+                collection={['Map.css[data-slipstream]', 'Map.js[data-slipstream defer]']}
+            />
+            <div class='map__canvas'>
+                {props.content}
+            </div>
+        </div>
+    `
+}

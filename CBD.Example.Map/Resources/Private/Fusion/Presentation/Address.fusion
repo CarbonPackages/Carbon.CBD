@@ -1,0 +1,17 @@
+prototype(CBD.Example.Map:Presentation.Map.Address) < prototype(Neos.Fusion:Component) {
+    lat = null
+    lon = null
+    title = null
+
+    editable = false
+    @if.hasNeededProps = ${this.editable || (this.lat && this.lon && this.title)}
+
+    renderer = afx`
+        <address class='map-address' data-coordinate={props.lat + ',' + props.lon}>
+            <strong>{props.title}</strong> <br />
+            {props.street} <br />
+            {props.postCode} {props.city} <br />
+            {props.country}
+        </address>
+    `
+}

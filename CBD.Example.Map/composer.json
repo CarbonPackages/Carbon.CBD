@@ -1,0 +1,19 @@
+{
+    "name": "cbd/example-map",
+    "type": "neos-plugin",
+    "require": {
+        "carbon/cbd": "*",
+        "carbon/includeassets": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "CBD\\Example\\Map\\": "Classes"
+        }
+    },
+    "extra": {
+        "installer-name": "CBD.Example.Map",
+        "neos": {
+            "package-key": "CBD.Example.Map"
+        }
+    }
+}

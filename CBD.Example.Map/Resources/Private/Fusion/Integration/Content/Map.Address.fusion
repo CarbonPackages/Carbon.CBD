@@ -1,0 +1,14 @@
+prototype(CBD.Example.Map:Content.Map.Address) < prototype(Neos.Neos:ContentComponent) {
+    title = ${q(node).property('title')}
+    street = ${q(node).property('street')}
+    postCode = ${q(node).property('postCode')}
+    city = ${q(node).property('city')}
+    country = ${q(node).property('country')}
+    lat = ${q(node).property('lat')}
+    lon = ${q(node).property('lon')}
+    editable = ${node.context.inBackend}
+
+    renderer = afx`
+        <CBD.Example.Map:Presentation.Map.Address {...props} />
+    `
+}
