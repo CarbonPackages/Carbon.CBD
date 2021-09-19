@@ -14,5 +14,5 @@
         "neos": {
             "package-key": "Carbon.CBD.Example"
         }
-    },
+    }
 }
