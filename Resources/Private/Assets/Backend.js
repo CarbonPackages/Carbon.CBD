@@ -1,4 +1,4 @@
-const NAMESPACE = "carbon-slider-wrapper";
+const NAMESPACE = "carbon-cbd";
 const BACKEND_EDIT_CLASS = NAMESPACE + "--edit";
 [...document.querySelectorAll("." + NAMESPACE)].forEach((element) => {
     const BUTTON = element.querySelector(`.${NAMESPACE}__switcher`);

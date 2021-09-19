@@ -1,4 +1,4 @@
 'Neos.Neos:ContentCollection':
   constraints:
     nodeTypes:
-      'Carbon.SliderWrapper:Mixin.Slider.Item': false
+      'Carbon.CBD:Mixin.Element.Item': false

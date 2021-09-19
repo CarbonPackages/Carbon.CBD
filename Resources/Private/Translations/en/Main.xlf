@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2"
-	xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file original="" product-name="Carbon.SliderWrapper" source-language="en" target-language="en" datatype="plaintext">
-		<body>
-			<trans-unit id="edit" xml:space="preserve">
-				<source>Edit</source>
-				<target>Edit</target>
-			</trans-unit>
-			<trans-unit id="live" xml:space="preserve">
-				<source>Live view</source>
-				<target>Live view</target>
-			</trans-unit>
-			<trans-unit id="noSlides" xml:space="preserve">
-				<source>No slides have been created yet</source>
-				<target>No slides have been created yet</target>
-			</trans-unit>
-		</body>
-	</file>
+    xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Carbon.CBD" source-language="en" target-language="en" datatype="plaintext">
+        <body>
+            <trans-unit id="edit" xml:space="preserve">
+                <source>Edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="live" xml:space="preserve">
+                <source>Live view</source>
+                <target>Live view</target>
+            </trans-unit>
+            <trans-unit id="noContent" xml:space="preserve">
+                <source>No content has been created yet</source>
+                <target>No content has been created yet</target>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>

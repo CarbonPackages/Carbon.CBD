@@ -1,0 +1,10 @@
+'Carbon.CBD:Mixin.Element':
+  abstract: true
+  superTypes:
+    'Neos.Neos:Content': true
+    'Neos.Neos:ContentCollection': true
+  label: "${q(node).children().count() + ' Element' + (q(node).children().count() != 1 ? 's' : '')}"
+  constraints:
+    nodeTypes:
+      '*': false
+      'Carbon.CBD:Mixin.Element.Item': true

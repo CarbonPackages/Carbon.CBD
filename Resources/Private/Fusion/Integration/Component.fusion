@@ -1,4 +1,4 @@
-prototype(Carbon.SliderWrapper:Component) < prototype(Neos.Neos:ContentComponent) {
+prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
     contentCollectionRenderer = Neos.Neos:ContentCollectionRenderer
     count = ${q(node).children().count()}
     editable = ${node.context.inBackend}
@@ -16,7 +16,7 @@ prototype(Carbon.SliderWrapper:Component) < prototype(Neos.Neos:ContentComponent
         iterationName = 'iterator'
     }
 
-    renderer = afx`<Carbon.SliderWrapper:Presentation.Wrapper {...props} />`
+    renderer = afx`<Carbon.CBD:Presentation.Wrapper {...props} />`
 
     @context.type = ${this.type}
     @cache {

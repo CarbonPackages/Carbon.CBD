@@ -2,4 +2,4 @@ Neos:
   Neos:
     fusion:
       autoInclude:
-        Carbon.SliderWrapper: true
+        Carbon.CBD: true

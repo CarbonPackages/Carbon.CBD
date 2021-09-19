@@ -1,11 +1,11 @@
 {
-  "name": "carbon.sliderwrapper",
-  "description": "Dependencies for Carbon.SliderWrapper",
+  "name": "carbon.cbd",
+  "description": "Dependencies for Carbon.CBD",
   "license": "GPL-3.0-or-later",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/CarbonPackages/Carbon.SliderWrapper.git"
+    "url": "git://github.com/CarbonPackages/Carbon.CBD.git"
   },
   "browserslist": [
     "> 0.5%",

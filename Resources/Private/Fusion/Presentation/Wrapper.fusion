@@ -1,4 +1,4 @@
-prototype(Carbon.SliderWrapper:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
+prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     @propTypes {
         count = ${PropTypes.integer}
         editable = ${PropTypes.boolean}
@@ -19,36 +19,36 @@ prototype(Carbon.SliderWrapper:Presentation.Wrapper) < prototype(Neos.Fusion:Com
         visible = ${this.editable || this.count}
     }
     l18n = Neos.Fusion:DataStructure {
-        edit = ${Carbon.Backend.translate('edit', 'Edit', [], 'Main', 'Carbon.SliderWrapper')}
-        live = ${Carbon.Backend.translate('live', 'Live view', [], 'Main', 'Carbon.SliderWrapper')}
-        noSlides = ${Carbon.Backend.translate('noSlides', 'No slides have been created yet', [], 'Main', 'Carbon.SliderWrapper')}
+        edit = ${Carbon.Backend.translate('edit', 'Edit', [], 'Main', 'Carbon.CBD')}
+        live = ${Carbon.Backend.translate('live', 'Live view', [], 'Main', 'Carbon.CBD')}
+        noContent = ${Carbon.Backend.translate('noContent', 'No content has been created yet', [], 'Main', 'Carbon.CBD')}
     }
 
     renderer = afx`
-        <div class={BEM.modifier('carbon-slider-wrapper', {edit: !props.count})} @if.set={props.editable}>
-            <Neos.Fusion:Augmenter class='carbon-slider-wrapper__live'>
+        <div class={BEM.modifier('carbon-cbd', {edit: !props.count})} @if.set={props.editable}>
+            <Neos.Fusion:Augmenter class='carbon-cbd__live'>
                 <Neos.Fusion:Renderer type={props.type} element.content={props.content} element.count={props.count} />
             </Neos.Fusion:Augmenter>
             <div
-                class='carbon-slider-wrapper__edit'
-                data-carbon-warning={props.l18n.noSlides}
+                class='carbon-cbd__edit'
+                data-carbon-warning={props.l18n.noContent}
                 data-__neos-insertion-anchor
             >
                 {props.contentCollectionRenderer}
             </div>
-            <button type='button' class='carbon-slider-wrapper__switcher'>
-                <span class={BEM.modifier('carbon-slider-wrapper__text', 'edit')}>
+            <button type='button' class='carbon-cbd__switcher'>
+                <span class={BEM.modifier('carbon-cbd__text', 'edit')}>
                     {props.l18n.edit}
                 </span>
-                <span class={BEM.modifier('carbon-slider-wrapper__text', 'live')}>
+                <span class={BEM.modifier('carbon-cbd__text', 'live')}>
                     {props.l18n.live}
                 </span>
             </button>
             <style data-slipstream>
-                {File.readFile('resource://Carbon.SliderWrapper/Private/Fusion/Presentation/Backend.css')}
+                {File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.css')}
             </style>
             <script data-slipstream='//body'>
-                {File.readFile('resource://Carbon.SliderWrapper/Private/Fusion/Presentation/Backend.js')}
+                {File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.js')}
             </script>
         </div>
         <Neos.Fusion:Renderer type={props.type} element.content={props.content} element.count={props.count} @if.set={!props.editable} />

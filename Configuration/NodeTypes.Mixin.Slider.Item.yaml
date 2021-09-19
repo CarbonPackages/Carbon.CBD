@@ -1,8 +1,0 @@
-'Carbon.SliderWrapper:Mixin.Slider.Item':
-  abstract: true
-  superTypes:
-    'Neos.Neos:Content': true
-  ui:
-    label: Slide
-    icon: image
-    position: 10

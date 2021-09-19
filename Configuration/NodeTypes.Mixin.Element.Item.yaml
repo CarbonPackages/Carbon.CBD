@@ -1,0 +1,4 @@
+'Carbon.CBD:Mixin.Element.Item':
+  abstract: true
+  superTypes:
+    'Neos.Neos:Content': true

@@ -1,7 +1,7 @@
 {
-    "name": "carbon/sliderwrapper",
+    "name": "carbon/cbd",
     "type": "neos-carbon",
-    "description": "A small Fusion prototype to create a wrapper for editing slider in the backend",
+    "description": "Make complex content structure (e.g. slider) editable in Neos. Fast and bullet-proof",
     "license": "GPL-3.0",
     "keywords": [
         "flow",
@@ -27,13 +27,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "Carbon\\SliderWrapper\\": "Classes"
+            "Carbon\\CBD\\": "Classes"
         }
     },
     "extra": {
-        "installer-name": "Carbon.SliderWrapper",
+        "installer-name": "Carbon.CBD",
         "neos": {
-            "package-key": "Carbon.SliderWrapper"
+            "package-key": "Carbon.CBD"
         }
     },
     "archive": {
