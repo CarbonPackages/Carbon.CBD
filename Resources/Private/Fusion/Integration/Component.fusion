@@ -2,6 +2,7 @@ prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
     contentCollectionRenderer = Neos.Neos:ContentCollectionRenderer
     count = ${q(node).children().count()}
     editable = ${node.context.inBackend}
+    data = Neos.Fusion:DataStructure
 
     # Add here your Fusion Prototype
     type = null

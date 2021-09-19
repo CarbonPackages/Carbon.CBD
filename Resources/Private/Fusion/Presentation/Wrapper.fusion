@@ -10,6 +10,8 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     # Add here your Fusion Prototype
     type = null
     count = 0
+    # Pass additional data
+    data = Neos.Fusion:DataStructure
     editable = false
     content = null
     contentCollectionRenderer = null
@@ -27,7 +29,12 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     renderer = afx`
         <div class={BEM.modifier('carbon-cbd', {edit: !props.count})} @if.set={props.editable}>
             <Neos.Fusion:Augmenter class='carbon-cbd__live'>
-                <Neos.Fusion:Renderer type={props.type} element.content={props.content} element.count={props.count} />
+                <Neos.Fusion:Renderer
+                    type={props.type}
+                    element.content={props.content}
+                    element.count={props.count}
+                    element.data={props.data}
+                />
             </Neos.Fusion:Augmenter>
             <div
                 class='carbon-cbd__edit'
@@ -51,7 +58,13 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
                 {File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.js')}
             </script>
         </div>
-        <Neos.Fusion:Renderer type={props.type} element.content={props.content} element.count={props.count} @if.set={!props.editable} />
+        <Neos.Fusion:Renderer
+            @if.set={!props.editable}
+            type={props.type}
+            element.content={props.content}
+            element.count={props.count}
+            element.data={props.data}
+        />
     `
 }
 
