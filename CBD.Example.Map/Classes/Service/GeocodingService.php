@@ -32,7 +32,7 @@ class GeocodingService
             ($propertyName == 'street' || $propertyName == 'postCode' || $propertyName == 'city' || $propertyName == 'country')
         ) {
             $node->setProperty('lat', '');
-            $node->setProperty('lon', '');
+            $node->setProperty('lng', '');
 
             if (empty($value)) {
                 return;
@@ -44,10 +44,10 @@ class GeocodingService
             $city = $node->getProperty('city');
             $country = $node->getProperty('country');
             $address = "$street, $postCode $city, $country";
-            $latLon = $this->geocodeLatLonFromAddress($address);
-            if ($latLon) {
-                $node->setProperty('lat', $latLon['lat']);
-                $node->setProperty('lon', $latLon['lon']);
+            $latLng = $this->geocodeLatLngFromAddress($address);
+            if ($latLng) {
+                $node->setProperty('lat', $latLng['lat']);
+                $node->setProperty('lng', $latLng['lng']);
             }
         }
     }
@@ -57,7 +57,7 @@ class GeocodingService
      * @return array|null
      * @throws InfiniteRedirectionException
      */
-    public function geocodeLatLonFromAddress(string $address): ?array
+    public function geocodeLatLngFromAddress(string $address): ?array
     {
         $url = 'https://nominatim.openstreetmap.org/search?q=' . urlencode($address) . '&limit=1&format=json&addressdetails=1';
 
@@ -71,7 +71,7 @@ class GeocodingService
             if (isset($json[0]) && isset($json[0]['lat']) && isset($json[0]['lon'])) {
                 return [
                     'lat' => $json[0]['lat'],
-                    'lon' => $json[0]['lon'],
+                    'lng' => $json[0]['lon'],
                 ];
             }
         }

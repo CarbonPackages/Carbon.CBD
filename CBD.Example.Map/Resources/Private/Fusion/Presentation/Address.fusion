@@ -1,17 +1,25 @@
 prototype(CBD.Example.Map:Presentation.Map.Address) < prototype(Neos.Fusion:Component) {
     lat = null
-    lon = null
+    lng = null
     title = null
+    cbd = false
 
     editable = false
-    @if.hasNeededProps = ${this.editable || (this.lat && this.lon && this.title)}
+    @if.hasNeededProps = ${this.editable || (this.lat && this.lng && this.title)}
 
     renderer = afx`
-        <address class='map-address' data-coordinate={props.lat + ',' + props.lon}>
+        <address class='map-address' data-coordinate={props.lat + ',' + props.lng}>
             <strong>{props.title}</strong> <br />
             {props.street} <br />
             {props.postCode} {props.city} <br />
             {props.country}
         </address>
     `
+    renderer.@process.wrap = CBD.Example.Map:Presentation.Map {
+        @if.inCBDMode = ${props.cbd}
+        mode = 'edit'
+        coordinates = ${[{'lat': props.lat, 'lng': props.lng}]}
+        content = ${value}
+        inlineEditor = ${props.inlineEditor}
+    }
 }

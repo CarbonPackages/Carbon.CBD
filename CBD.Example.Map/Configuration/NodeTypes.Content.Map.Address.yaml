@@ -55,8 +55,8 @@
     lat:
       type: string
       ui:
-        reloadIfChanged: true
-    lon:
+        inlineEditable: true
+    lng:
       type: string
       ui:
-        reloadIfChanged: true
+        inlineEditable: true

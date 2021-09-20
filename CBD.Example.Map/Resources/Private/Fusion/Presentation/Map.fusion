@@ -1,5 +1,6 @@
 prototype(CBD.Example.Map:Presentation.Map) < prototype(Neos.Fusion:Component) {
     content = null
+    mode = 'live'
     data = Neos.Fusion:DataStructure
     coordinates = ${this.data.coordinates}
     coordinates.@process.calculate = ${Carbon.Array.check(value) ? CBD.Map.centerFromCoordinates(value) : null}
@@ -11,17 +12,18 @@ prototype(CBD.Example.Map:Presentation.Map) < prototype(Neos.Fusion:Component) {
 
     renderer = afx`
         <div
-            class='map'
-            x-style='visibility:hidden'
+            class={BEM.modifier('map', props.mode)}
+            style='visibility:hidden'
             data-map={Json.stringify(Array.concat({'center': props.coordinates}, props.settings))}
         >
             <Carbon.IncludeAssets:Collection
                 assetPackage='CBD.Example.Map'
                 collection={['Map.css[data-slipstream]', 'Map.js[data-slipstream defer]']}
             />
-            <div class='map__canvas'>
+            <div class={BEM.modifier('map__canvas', props.mode)}>
                 {props.content}
             </div>
+            {props.inlineEditor}
         </div>
     `
 }

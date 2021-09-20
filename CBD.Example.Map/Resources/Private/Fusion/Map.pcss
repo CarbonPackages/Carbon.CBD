@@ -1,6 +1,6 @@
 @import "Leaflet.css";
 
-.map {
+.map--live {
   position: relative;
   width: 100%;
   padding-top: 56.25%;
@@ -8,10 +8,15 @@
 }
 
 /* This is the map container with a ratio of 16:9 */
-.map__canvas {
+.map__canvas--live {
   position: absolute;
   inset: 0;
   height: 100%;
+  width: 100%;
+}
+
+.map__canvas--edit {
+  height: 300px;
   width: 100%;
 }
 

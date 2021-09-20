@@ -1,6 +1,6 @@
 import { map, tileLayer, marker, control, divIcon, Util, featureGroup } from "leaflet/dist/leaflet-src.esm";
 
-const MAPS = [...document.querySelectorAll(".map")];
+const MAPS = [...document.querySelectorAll(".map--live")];
 
 const defaultOptions = {
     scrollWheelZoom: false,
@@ -22,11 +22,12 @@ const DIV_ICON = divIcon({
     popupAnchor: [0, -28],
 });
 
-const STYLE = tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-});
+MAPS.forEach((element) => initMap(element, true));
 
-MAPS.forEach((element) => {
+function initMap(element, live) {
+    const latEditor = live ? null : getEditor(element, "lat");
+    const lngEditor = live ? null : getEditor(element, "lng");
+
     const settings = { ...defaultOptions, ...JSON.parse(element.dataset?.map || null) };
     const canvas = element.querySelector(".map__canvas");
     const markerGroup = [];
@@ -45,19 +46,52 @@ MAPS.forEach((element) => {
             imperial: false,
         })
         .addTo(MAP);
-    STYLE.addTo(MAP);
+
+    tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(MAP);
 
     addresses.forEach((address) => {
-        const MARKER = marker(address.coordinate, { icon: DIV_ICON }).addTo(MAP);
+        const MARKER = marker(address.coordinate, { icon: DIV_ICON, draggable: !live }).addTo(MAP);
         markerGroup.push(MARKER);
         if (address.html) {
             MARKER.bindPopup(address.html, {
                 maxWidth: 500,
             });
         }
+        if (latEditor && lngEditor) {
+            MARKER.addEventListener("move", (event) => {
+                const latLng = event.latlng;
+                console.log(latLng);
+                latEditor.innerText = latLng.lat.toString();
+                lngEditor.innerText = latLng.lng.toString();
+            });
+        }
     });
 
     MAP.fitBounds(new featureGroup(markerGroup).getBounds());
 
+    if (live) {
+        document.addEventListener("carbonCBD", (event) => {
+            const detail = event.detail;
+            if (detail.element.querySelector(".map--live") != element || detail.mode === "live") {
+                return;
+            }
+            MAP.remove();
+        });
+    }
+
     element.style.visibility = "visible";
+}
+
+function getEditor(element, property) {
+    return element.querySelector(`[data-__neos-property="${property}"]`).firstElementChild;
+}
+
+document.addEventListener("carbonCBD", (event) => {
+    const detail = event.detail;
+    if (!detail.type === "CBD.Example.Map:Presentation.Map" || detail.mode === "live") {
+        return;
+    }
+    [...detail.element.querySelectorAll(".map--edit")].forEach((element) => initMap(element, false));
 });

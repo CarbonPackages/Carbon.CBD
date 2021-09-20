@@ -5,8 +5,14 @@ prototype(CBD.Example.Map:Content.Map.Address) < prototype(Neos.Neos:ContentComp
     city = ${q(node).property('city')}
     country = ${q(node).property('country')}
     lat = ${q(node).property('lat')}
-    lon = ${q(node).property('lon')}
+    lng = ${q(node).property('lng')}
     editable = ${node.context.inBackend}
+    cbd = ${cbd}
+
+    inlineEditor = afx`
+        Latitude: <Neos.Neos:Editable property='lat' block={false} /><br />
+        Longitude: <Neos.Neos:Editable property='lng' block={false} />
+    `
 
     renderer = afx`
         <CBD.Example.Map:Presentation.Map.Address {...props} />

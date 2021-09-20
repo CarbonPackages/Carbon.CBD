@@ -30,7 +30,7 @@ class MapHelper implements ProtectedContextAwareInterface
      * @return array|null
      * @throws InfiniteRedirectionException
      */
-    public function latLongFromAddress(string $address): ?array
+    public function latLngFromAddress(string $address): ?array
     {
         return $this->geocodingService->geocodeLatLonFromAddress($address);
     }
@@ -47,11 +47,11 @@ class MapHelper implements ProtectedContextAwareInterface
         $zsin = 0.0;
 
         foreach ($coords as $lnglat) {
-            $lat = $lnglat['lat'] * pi() / 180;
-            $lon = $lnglat['lon'] * pi() / 180;
+            $lat = (float) $lnglat['lat'] * pi() / 180;
+            $lng = (float) $lnglat['lng'] * pi() / 180;
 
-            $acos = cos($lat) * cos($lon);
-            $bcos = cos($lat) * sin($lon);
+            $acos = cos($lat) * cos($lng);
+            $bcos = cos($lat) * sin($lng);
             $csin = sin($lat);
             $xcos += $acos;
             $ycos += $bcos;
@@ -61,11 +61,11 @@ class MapHelper implements ProtectedContextAwareInterface
         $xcos /= $count_coords;
         $ycos /= $count_coords;
         $zsin /= $count_coords;
-        $lon = atan2($ycos, $xcos);
+        $lng = atan2($ycos, $xcos);
         $sqrt = sqrt($xcos * $xcos + $ycos * $ycos);
         $lat = atan2($zsin, $sqrt);
 
-        return [$lat * 180 / pi(), $lon * 180 / pi()];
+        return [$lat * 180 / pi(), $lng * 180 / pi()];
     }
 
     /**
