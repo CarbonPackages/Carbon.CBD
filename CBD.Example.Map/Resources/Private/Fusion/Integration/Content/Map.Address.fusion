@@ -10,8 +10,16 @@ prototype(CBD.Example.Map:Content.Map.Address) < prototype(Neos.Neos:ContentComp
     cbd = ${cbd}
 
     inlineEditor = afx`
-        Latitude: <Neos.Neos:Editable property='lat' block={false} /><br />
-        Longitude: <Neos.Neos:Editable property='lng' block={false} />
+        <table style='pointer-events:none'>
+            <tr>
+                <td>Latitude:</td>
+                <td class='map-address__lat'><Neos.Neos:Editable property='lat' block={false} /></td>
+            </tr>
+            <tr>
+                <td>Longitude:&nbsp;&nbsp;</td>
+                <td class='map-address__lng'><Neos.Neos:Editable property='lng' block={false} /></td>
+            </tr>
+        </table>
     `
 
     renderer = afx`

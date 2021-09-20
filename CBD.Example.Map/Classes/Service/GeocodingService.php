@@ -43,8 +43,9 @@ class GeocodingService
             $postCode = $node->getProperty('postCode');
             $city = $node->getProperty('city');
             $country = $node->getProperty('country');
-            $address = "$street, $postCode $city, $country";
+            $address = sprintf('%s, %s %s, %s', $street, $postCode, $city, $country);
             $latLng = $this->geocodeLatLngFromAddress($address);
+
             if ($latLng) {
                 $node->setProperty('lat', $latLng['lat']);
                 $node->setProperty('lng', $latLng['lng']);
@@ -59,8 +60,7 @@ class GeocodingService
      */
     public function geocodeLatLngFromAddress(string $address): ?array
     {
-        $url = 'https://nominatim.openstreetmap.org/search?q=' . urlencode($address) . '&limit=1&format=json&addressdetails=1';
-
+        $url = 'https://nominatim.openstreetmap.org/search.php?q=' . urlencode($address) . '&limit=1&format=jsonv2';
         $browser = new Browser();
         $browser->setRequestEngine(new CurlEngine());
         $response = $browser->request($url);

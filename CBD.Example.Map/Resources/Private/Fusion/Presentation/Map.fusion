@@ -3,7 +3,10 @@ prototype(CBD.Example.Map:Presentation.Map) < prototype(Neos.Fusion:Component) {
     mode = 'live'
     data = Neos.Fusion:DataStructure
     coordinates = ${this.data.coordinates}
-    coordinates.@process.calculate = ${Carbon.Array.check(value) ? CBD.Map.centerFromCoordinates(value) : null}
+    coordinates.@process {
+        calculate = ${Carbon.Array.check(value) ? CBD.Map.centerFromCoordinates(value) : null}
+        createObject = ${value ? {'center': value} : null}
+    }
 
     settings = Neos.Fusion:DataStructure {
     }
@@ -14,7 +17,7 @@ prototype(CBD.Example.Map:Presentation.Map) < prototype(Neos.Fusion:Component) {
         <div
             class={BEM.modifier('map', props.mode)}
             style='visibility:hidden'
-            data-map={Json.stringify(Array.concat({'center': props.coordinates}, props.settings))}
+            data-map={Json.stringify(Array.filter(Array.concat(props.coordinates, props.settings)))}
         >
             <Carbon.IncludeAssets:Collection
                 assetPackage='CBD.Example.Map'

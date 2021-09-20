@@ -39,9 +39,12 @@ class MapHelper implements ProtectedContextAwareInterface
      * @param array $coords
      * @return array
      */
-    public function centerFromCoordinates(array $coords): array
+    public function centerFromCoordinates(array $coords): ?array
     {
         $count_coords = count($coords);
+        if ($count_coords === 0) {
+            return null;
+        }
         $xcos = 0.0;
         $ycos = 0.0;
         $zsin = 0.0;

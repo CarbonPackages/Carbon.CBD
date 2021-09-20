@@ -29,15 +29,25 @@ function initMap(element, live) {
     const lngEditor = live ? null : getEditor(element, "lng");
 
     const settings = { ...defaultOptions, ...JSON.parse(element.dataset?.map || null) };
+    if (!settings.center) {
+        // If no center is set, cancel the map
+        return;
+    }
+
     const canvas = element.querySelector(".map__canvas");
     const markerGroup = [];
-    const addresses = [...canvas.querySelectorAll(".map-address")].map((element) => {
-        const coordinate = element.dataset.coordinate.split(",");
-        return {
-            html: element.innerHTML,
-            coordinate: [parseFloat(coordinate[0]), parseFloat(coordinate[1])],
-        };
-    });
+    const addresses = [...canvas.querySelectorAll(".map-address")]
+        .map((element) => {
+            const coordinate = element.dataset?.coordinate?.split(",");
+            if (!coordinate) {
+                return null;
+            }
+            return {
+                html: element.innerHTML,
+                coordinate: [parseFloat(coordinate[0]), parseFloat(coordinate[1])],
+            };
+        })
+        .filter((element) => element !== null);
     canvas.innerHTML = "";
 
     const MAP = map(canvas, settings);
@@ -62,7 +72,6 @@ function initMap(element, live) {
         if (latEditor && lngEditor) {
             MARKER.addEventListener("move", (event) => {
                 const latLng = event.latlng;
-                console.log(latLng);
                 latEditor.innerText = latLng.lat.toString();
                 lngEditor.innerText = latLng.lng.toString();
             });
@@ -85,11 +94,12 @@ function initMap(element, live) {
 }
 
 function getEditor(element, property) {
-    return element.querySelector(`[data-__neos-property="${property}"]`).firstElementChild;
+    return element.querySelector(`.map-address__${property} .neos-inline-editable`).firstElementChild;
 }
 
 document.addEventListener("carbonCBD", (event) => {
     const detail = event.detail;
+
     if (!detail.type === "CBD.Example.Map:Presentation.Map" || detail.mode === "live") {
         return;
     }

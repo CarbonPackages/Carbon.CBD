@@ -45,7 +45,6 @@
           position: 40
     country:
       type: string
-      defaultValue: Austria
       ui:
         label: Country
         reloadIfChanged: true

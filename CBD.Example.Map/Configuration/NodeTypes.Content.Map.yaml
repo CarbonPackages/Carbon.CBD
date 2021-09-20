@@ -6,4 +6,4 @@
     icon: map-marked
   constraints:
     nodeTypes:
-      'CBD.Example.Slider:Content.Map.Address': true
+      'CBD.Example.Map:Content.Map.Address': true

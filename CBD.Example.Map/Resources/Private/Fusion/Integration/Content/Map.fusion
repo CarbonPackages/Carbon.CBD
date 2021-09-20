@@ -4,9 +4,11 @@ prototype(CBD.Example.Map:Content.Map) < prototype(Carbon.CBD:Component) {
         coordinates = Neos.Fusion:Map {
             items = ${q(node).children('[instanceof CBD.Example.Map:Content.Map.Address]')}
             itemRenderer = Neos.Fusion:DataStructure {
+                @if.set = ${this.lat && this.lng}
                 lat = ${q(item).property('lat')}
                 lng = ${q(item).property('lng')}
             }
+            @process.filter = ${Array.filter(value)}
         }
     }
 }
