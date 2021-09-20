@@ -27,7 +27,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     }
 
     renderer = afx`
-        <div class={BEM.modifier('carbon-cbd', {edit: !props.count})} @if.set={props.editable}>
+        <div class={BEM.modifier('carbon-cbd', {edit: !props.count})} data-type={props.type} @if.set={props.editable}>
             <Neos.Fusion:Augmenter class='carbon-cbd__live'>
                 <Neos.Fusion:Renderer
                     type={props.type}
@@ -67,4 +67,3 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
         />
     `
 }
-
