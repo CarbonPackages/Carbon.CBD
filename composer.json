@@ -1,7 +1,7 @@
 {
     "name": "carbon/cbd",
     "type": "neos-carbon",
-    "description": "Make complex content structure (e.g. slider) editable in Neos. Fast and bullet-proof",
+    "description": "Make complex content structure (e.g. slider, maps, etc.) easily editable in Neos. Fast and bullet-proof",
     "license": "GPL-3.0",
     "keywords": [
         "flow",
