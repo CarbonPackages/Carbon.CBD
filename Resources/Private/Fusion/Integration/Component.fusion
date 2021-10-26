@@ -13,6 +13,9 @@ prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
         prototype(Neos.Neos:ContentElementWrapping) {
             @if.wrapping = false
         }
+        prototype(Neos.Neos:Editable) {
+            renderer.editable.condition = false
+        }
         items = ${q(node).children()}
         itemRenderer = Neos.Neos:ContentCase
         itemName = 'node'
