@@ -1,6 +1,11 @@
 prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
     contentCollectionRenderer = Neos.Neos:ContentCollectionRenderer {
-        @context.cbd = true
+        prototype(Neos.Neos:ContentComponent) {
+            cbd = true
+        }
+        prototype(Neos.Neos:Content) {
+            cbd = true
+        }
     }
     count = ${q(node).children().count()}
     editable = ${node.context.inBackend}
