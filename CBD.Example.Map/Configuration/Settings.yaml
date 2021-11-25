@@ -1,8 +1,0 @@
-Neos:
-  Fusion:
-    defaultContext:
-      CBD.Map: 'CBD\Example\Map\EelHelper\MapHelper'
-  Neos:
-    fusion:
-      autoInclude:
-        CBD.Example.Map: true
