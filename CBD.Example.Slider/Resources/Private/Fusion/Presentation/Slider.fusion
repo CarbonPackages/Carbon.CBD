@@ -10,10 +10,11 @@ prototype(CBD.Example.Slider:Presentation.Slider) < prototype(Neos.Fusion:Compon
 
     renderer = afx`
         <div class="slider">
-            <Carbon.IncludeAssets:Collection
-                assetPackage='CBD.Example.Slider'
-                collection={['Slider.css[data-slipstream]', 'Slider.js[data-slipstream defer]']}
-            />
+            <link rel="stylesheet" href={StaticResource.uri('CBD.Example.Slider', 'Public/Styles/Slider.css')} data-slipstream />
+            <script
+                src={StaticResource.uri('CBD.Example.Slider', 'Public/Scripts/Slider.js')}
+                data-slipstream defer 
+            ></script>
             <div class="glide" data-glide={Json.stringify(props.settings)}>
                 <div class="glide__track" data-glide-el="track">
                     <div class="glide__slides">
