@@ -28,6 +28,24 @@
   & > * {
     margin-bottom: 30px;
   }
+
+  &::after {
+    content: attr(data-warning);
+    display: block;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
+    padding: 5% 12px;
+    margin: 30px auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    background: #f0ad4e;
+  }
+
+  &:not(:empty)::after {
+    display: none !important;
+  }
 }
 
 .carbon-cbd__switcher {

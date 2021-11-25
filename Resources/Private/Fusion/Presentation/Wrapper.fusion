@@ -38,7 +38,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
             </Neos.Fusion:Augmenter>
             <div
                 class='carbon-cbd__edit'
-                data-carbon-warning={props.l18n.noContent}
+                data-warning={props.l18n.noContent}
                 data-__neos-insertion-anchor
             >
                 {props.contentCollectionRenderer}
