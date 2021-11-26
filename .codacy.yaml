@@ -1,7 +1,3 @@
 ---
-languages:
-  css:
-    extensions:
-      - pcss
 exclude_paths:
   - Resources/Private/Fusion/Presentation/Backend.*

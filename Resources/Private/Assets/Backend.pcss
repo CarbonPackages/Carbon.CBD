@@ -22,25 +22,27 @@
 }
 
 .carbon-cbd__edit {
-  padding: 0 20px;
+  box-sizing: border-box;
   min-height: 100px;
+  padding: 0 20px;
 
   & > * {
     margin-bottom: 30px;
   }
 
   &::after {
+    background: #f0ad4e;
+    box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    color: #fff;
     content: attr(data-warning);
     display: block;
-    width: 100%;
-    color: #fff;
-    box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
-    padding: 5% 12px;
+    font-size: 20px;
     margin: 30px auto;
+    padding: 5% 12px;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
-    background: #f0ad4e;
+    width: 100%;
   }
 
   &:not(:empty)::after {
@@ -49,26 +51,27 @@
 }
 
 .carbon-cbd__switcher {
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding: 0 0 20px;
-  transform: translateY(-100%);
-  z-index: 20;
-  border: 0;
-  border-radius: 0;
-  color: #fff;
   background: none;
-  text-align: left;
+  border-radius: 0;
+  border: 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
   display: none;
+  left: 0;
+  padding: 0 0 20px;
+  position: absolute;
+  right: 0;
+  text-align: left;
+  top: 10px;
+  transform: translateY(-100%);
+  width: 100%;
+  z-index: 20;
 }
 
 .carbon-cbd__text {
-  display: inline-block;
   background: #00adee;
-  padding: 5px 12px;
+  display: inline-block;
   margin: 0 30px;
+  padding: 5px 12px;
 }
