@@ -39,6 +39,7 @@
     "archive": {
         "exclude": [
             ".github",
+            ".codacy.yaml",
             ".editorconfig",
             ".eslintignore",
             ".eslintrc",
