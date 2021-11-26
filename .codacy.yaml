@@ -1,3 +1,7 @@
 ---
+languages:
+  sass:
+    extensions:
+      - pcss
 exclude_paths:
   - Resources/Private/Fusion/Presentation/Backend.*
