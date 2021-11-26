@@ -15,6 +15,8 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     editable = false
     content = null
     contentCollectionRenderer = null
+    reloadOnFirstInit = false
+    class = null
 
     @if {
         type = ${this.type}
@@ -27,7 +29,12 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     }
 
     renderer = afx`
-        <div class={BEM.modifier('carbon-cbd', {edit: !props.count})} data-type={props.type} @if.set={props.editable}>
+        <div 
+            @if.set={props.editable}
+            class={Carbon.String.merge(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class)}
+            data-type={props.type}
+            data-reload={props.reloadOnFirstInit}
+        >
             <Neos.Fusion:Augmenter class='carbon-cbd__live'>
                 <Neos.Fusion:Renderer
                     type={props.type}

@@ -1,9 +1,20 @@
+document.addEventListener(
+    "Neos.NodeCreated",
+    (event) => {
+        const element = event.detail.element;
+        if (element && element.matches(".carbon-cbd--edit[data-reload]")) {
+            window.location.reload();
+        }
+    },
+    false
+);
+
 window.carbonCBDswitcher = (button) => {
-    const element = button.closest('.carbon-cbd');
-    const liveContainer = element.querySelector('.carbon-cbd__live');
+    const element = button.closest(".carbon-cbd");
+    const liveContainer = element.querySelector(".carbon-cbd__live");
     const type = element.dataset.type;
 
-    if (element.classList.contains('carbon-cbd--edit')) {
+    if (element.classList.contains("carbon-cbd--edit")) {
         window.location.reload();
         triggerEvent({ mode: "live", element, type });
         return;
@@ -15,9 +26,9 @@ window.carbonCBDswitcher = (button) => {
         }, 10);
     }
 
-    element.classList.add('carbon-cbd--edit');
+    element.classList.add("carbon-cbd--edit");
     triggerEvent({ mode: "edit", element, type });
-}
+};
 
 const triggerEvent = (options) => {
     setTimeout(() => {
