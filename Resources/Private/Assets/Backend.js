@@ -1,26 +1,23 @@
-const NAMESPACE = "carbon-cbd";
-const BACKEND_EDIT_CLASS = NAMESPACE + "--edit";
-[...document.querySelectorAll("." + NAMESPACE)].forEach((element) => {
-    const BUTTON = element.querySelector(`.${NAMESPACE}__switcher`);
-    const LIVE = element.querySelector(`.${NAMESPACE}__live`);
+window.carbonCBDswitcher = (button) => {
+    const element = button.closest('.carbon-cbd');
+    const liveContainer = element.querySelector('.carbon-cbd__live');
     const type = element.dataset.type;
-    if (BUTTON) {
-        BUTTON.addEventListener("click", () => {
-            if (element.classList.contains(BACKEND_EDIT_CLASS)) {
-                window.location.reload();
-                triggerEvent({ mode: "live", element, type });
-                return;
-            }
-            if (LIVE) {
-                setTimeout(() => {
-                    LIVE.remove();
-                }, 10);
-            }
-            element.classList.add(BACKEND_EDIT_CLASS);
-            triggerEvent({ mode: "edit", element, type });
-        });
+
+    if (element.classList.contains('carbon-cbd--edit')) {
+        window.location.reload();
+        triggerEvent({ mode: "live", element, type });
+        return;
     }
-});
+
+    if (liveContainer) {
+        setTimeout(() => {
+            liveContainer.remove();
+        }, 10);
+    }
+
+    element.classList.add('carbon-cbd--edit');
+    triggerEvent({ mode: "edit", element, type });
+}
 
 const triggerEvent = (options) => {
     setTimeout(() => {

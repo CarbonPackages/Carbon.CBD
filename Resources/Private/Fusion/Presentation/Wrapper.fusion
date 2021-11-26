@@ -43,7 +43,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
             >
                 {props.contentCollectionRenderer}
             </div>
-            <button type='button' class='carbon-cbd__switcher'>
+            <button type='button' class='carbon-cbd__switcher' onClick="carbonCBDswitcher(this)">
                 <span class={BEM.modifier('carbon-cbd__text', 'edit')}>
                     {props.l18n.edit}
                 </span>
@@ -54,9 +54,6 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
             <style data-slipstream>
                 {File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.css')}
             </style>
-            <script data-slipstream='//body'>
-                {File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.js')}
-            </script>
         </div>
         <Neos.Fusion:Renderer
             @if.set={!props.editable}

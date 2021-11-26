@@ -1,0 +1,7 @@
+prototype(Neos.Neos:Page) {
+    head.carbonCBD = Neos.Fusion:Tag {
+        @if.onlyInBackend = ${node.context.inBackend}
+        tagName = 'script'
+        content = ${File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.js')}
+    }
+}
