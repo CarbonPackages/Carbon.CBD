@@ -15,7 +15,7 @@
         "neos/neos": "^5.3 || ^7.0",
         "neos/fusion-afx": "^1.4 || ^7.0",
         "sitegeist/slipstream": "^1.1 || ^2.1",
-        "carbon/eel": "^1.13"
+        "carbon/eel": "^1.13 || ^2.0"
     },
     "authors": [
         {
