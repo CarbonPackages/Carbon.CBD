@@ -45,6 +45,7 @@
             ".eslintrc",
             ".gitattributes",
             ".gitignore",
+            ".jshintrc",
             ".nvmrc",
             ".postcssrc.yml",
             ".prettierignore",

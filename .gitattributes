@@ -5,6 +5,7 @@
 /.gitattributes export-ignore
 /.github export-ignore
 /.gitignore export-ignore
+/.jshintrc export-ignore
 /.nvmrc export-ignore
 /.postcssrc.yml export-ignore
 /.prettierignore export-ignore
