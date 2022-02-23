@@ -18,6 +18,10 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     reloadOnFirstInit = false
     class = null
 
+    # Render additional stuff before and after the contentCollectionRenderer
+    beforeContentCollectionRenderer = null
+    afterContentCollectionRenderer = null
+
     @if {
         type = ${this.type}
         visible = ${this.editable || this.count}
@@ -29,7 +33,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     }
 
     renderer = afx`
-        <div 
+        <div
             @if.set={props.editable}
             class={Carbon.String.merge(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class)}
             data-type={props.type}
@@ -43,12 +47,16 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
                     element.data={props.data}
                 />
             </Neos.Fusion:Augmenter>
-            <div
-                class='carbon-cbd__edit'
-                data-warning={props.l18n.noContent}
-                data-__neos-insertion-anchor
-            >
-                {props.contentCollectionRenderer}
+            <div class='carbon-cbd__edit'>
+                {props.beforeContentCollectionRenderer}
+                <div
+                    class='carbon-cbd__content-collection'
+                    data-warning={props.l18n.noContent}
+                    data-__neos-insertion-anchor
+                >
+                    {props.contentCollectionRenderer}
+                </div>
+                {props.afterContentCollectionRenderer}
             </div>
             <button type='button' class='carbon-cbd__switcher' onClick="carbonCBDswitcher(this)">
                 <span class={BEM.modifier('carbon-cbd__text', 'edit')}>
