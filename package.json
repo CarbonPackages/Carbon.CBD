@@ -17,25 +17,24 @@
     "not bb <= 10",
     "not op_mob <= 12.1"
   ],
-  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^10.4.2",
-    "cssnano": "^5.0.16",
-    "esbuild": "^0.14.16",
-    "eslint": "^8.8.0",
-    "eslint-config-prettier": "^8.3.0",
+    "cssnano": "^5.0.17",
+    "esbuild": "^0.14.23",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.6",
     "postcss-cli": "^9.1.0",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.5.1",
-    "stylelint": "^14.3.0",
-    "stylelint-config-standard": "^24.0.0"
+    "stylelint": "^14.5.2",
+    "stylelint-config-standard": "^25.0.0"
   },
   "scripts": {
     "css": "postcss Resources/Private/Assets/*.pcss --no-map --ext css --dir Resources/Private/Fusion/Presentation",
     "js": "esbuild Resources/Private/Assets/*.js --bundle --minify --outdir=Resources/Private/Fusion/Presentation",
-    "build": "yarn css | yarn js",
-    "start": "yarn build"
+    "build": "pnpm css | pnpm js",
+    "start": "pnpm build"
   }
 }
