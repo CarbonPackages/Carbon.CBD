@@ -8,27 +8,22 @@
     "url": "git://github.com/CarbonPackages/Carbon.CBD.git"
   },
   "browserslist": [
-    "> 0.5%",
-    "last 2 versions",
-    "Firefox ESR",
-    "ie 11",
-    "not ie <= 10",
-    "not ie_mob <= 10",
-    "not bb <= 10",
-    "not op_mob <= 12.1"
+    "defaults",
+    "not ie 11",
+    "not dead"
   ],
   "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "cssnano": "^5.0.17",
-    "esbuild": "^0.14.23",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.4.0",
+    "autoprefixer": "^10.4.4",
+    "cssnano": "^5.1.5",
+    "esbuild": "^0.14.28",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "postcss": "^8.4.6",
+    "postcss": "^8.4.12",
     "postcss-cli": "^9.1.0",
     "postcss-nested": "^5.0.6",
-    "prettier": "^2.5.1",
-    "stylelint": "^14.5.2",
+    "prettier": "^2.6.1",
+    "stylelint": "^14.6.1",
     "stylelint-config-standard": "^25.0.0"
   },
   "scripts": {
