@@ -9,6 +9,16 @@ document.addEventListener(
     false
 );
 
+// We are in Preview, so we remove some markup
+if (window.name != "neos-content-main") {
+    window.addEventListener("load", () => {
+        [...document.querySelectorAll(".carbon-cbd")].forEach((element) => {
+            element.querySelector(".carbon-cbd__edit").remove();
+            element.querySelector(".carbon-cbd__switcher").remove();
+        });
+    });
+}
+
 window.carbonCBDswitcher = (button) => {
     const element = button.closest(".carbon-cbd");
     const liveContainer = element.querySelector(".carbon-cbd__live");
