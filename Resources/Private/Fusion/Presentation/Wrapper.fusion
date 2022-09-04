@@ -8,19 +8,19 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     }
 
     # Add here your Fusion Prototype
-    type = null
+    type = ${null}
     count = 0
     # Pass additional data
     data = Neos.Fusion:DataStructure
     editable = false
-    content = null
-    contentCollectionRenderer = null
+    content = ${null}
+    contentCollectionRenderer = ${null}
     reloadOnFirstInit = false
-    class = null
+    class = ${null}
 
     # Render additional stuff before and after the contentCollectionRenderer
-    beforeContentCollectionRenderer = null
-    afterContentCollectionRenderer = null
+    beforeContentCollectionRenderer = ${null}
+    afterContentCollectionRenderer = ${null}
 
     @if {
         type = ${this.type}

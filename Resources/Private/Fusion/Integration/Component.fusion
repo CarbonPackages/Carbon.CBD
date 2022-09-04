@@ -12,7 +12,7 @@ prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
     data = Neos.Fusion:DataStructure
 
     # Add here your Fusion Prototype
-    type = null
+    type = ${null}
 
     content = Neos.Fusion:Loop {
         prototype(Neos.Neos:ContentElementWrapping) {
