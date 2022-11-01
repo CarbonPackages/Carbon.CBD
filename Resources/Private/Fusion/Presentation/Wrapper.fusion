@@ -17,6 +17,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     contentCollectionRenderer = ${null}
     reloadOnFirstInit = false
     class = ${null}
+    additionalClass = ${null}
 
     # Render additional stuff before and after the contentCollectionRenderer
     beforeContentCollectionRenderer = ${null}
@@ -35,7 +36,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     renderer = afx`
         <div
             @if.set={props.editable}
-            class={Carbon.String.merge(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class)}
+            class={Carbon.String.merge(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class, props.additionalClass)}
             data-type={props.type}
             data-reload={props.reloadOnFirstInit}
         >
@@ -76,6 +77,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
             element.content={props.content}
             element.count={props.count}
             element.data={props.data}
+            element.additionalClass={props.additionalClass}
         />
     `
 }
