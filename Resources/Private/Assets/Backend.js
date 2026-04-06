@@ -6,7 +6,7 @@ document.addEventListener(
             window.location.reload();
         }
     },
-    false
+    false,
 );
 
 // We are in Preview, so we remove some markup
