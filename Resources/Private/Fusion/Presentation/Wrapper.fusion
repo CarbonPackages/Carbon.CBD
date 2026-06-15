@@ -36,7 +36,7 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     renderer = afx`
         <div
             @if.set={props.editable}
-            class={Carbon.String.merge(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class, props.additionalClass)}
+            class={Carbon.String.classNames(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class, props.additionalClass)}
             data-type={props.type}
             data-reload={props.reloadOnFirstInit}
         >
@@ -67,9 +67,6 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
                     {props.l18n.live}
                 </span>
             </button>
-            <style data-slipstream>
-                {File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.css')}
-            </style>
         </div>
         <Neos.Fusion:Renderer
             @if.set={!props.editable}

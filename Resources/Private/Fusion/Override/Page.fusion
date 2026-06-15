@@ -1,7 +1,19 @@
 prototype(Neos.Neos:Page) {
-    head.carbonCBD = Neos.Fusion:Tag {
+    head.carbonCBD = Neos.Fusion:Join {
         @if.onlyInBackend = ${node.context.inBackend}
-        tagName = 'script'
-        content = ${File.readFile('resource://Carbon.CBD/Private/Fusion/Presentation/Backend.js')}
+        styles = Neos.Fusion:Tag {
+            tagName = 'link'
+            attributes {
+                href = ${StaticResource.uri('Carbon.CBD', 'Public/Backend.css')}
+                rel = 'stylesheet'
+            }
+        }
+        script = Neos.Fusion:Tag {
+            tagName = 'script'
+            attributes {
+                src = ${StaticResource.uri('Carbon.CBD', 'Public/Backend.js')}
+                defer = true
+            }
+        }
     }
 }

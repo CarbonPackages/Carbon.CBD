@@ -29,8 +29,8 @@
     "stylelint-config-standard": "^40.0.0"
   },
   "scripts": {
-    "css": "postcss Resources/Private/Assets/*.pcss --no-map --ext css --dir Resources/Private/Fusion/Presentation",
-    "js": "esbuild Resources/Private/Assets/*.js --bundle --minify --outdir=Resources/Private/Fusion/Presentation",
+    "css": "postcss Resources/Private/Assets/*.pcss --no-map --ext css --dir Resources/Public",
+    "js": "esbuild Resources/Private/Assets/*.js --bundle --minify --outdir=Resources/Public",
     "build": "pnpm css | pnpm js",
     "start": "pnpm build"
   },

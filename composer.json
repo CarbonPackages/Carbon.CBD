@@ -12,10 +12,8 @@
         "backend"
     ],
     "require": {
-        "neos/neos": "^5.3 || ^7.0 || ^8.0",
-        "neos/fusion-afx": "^1.4 || ^7.0 || ^8.0",
-        "sitegeist/slipstream": "^1.1 || ^2.1",
-        "carbon/eel": "^1.13 || ^2.0"
+        "neos/neos": "^8.4",
+        "carbon/eel": "^2.14"
     },
     "authors": [
         {
@@ -35,26 +33,5 @@
         "neos": {
             "package-key": "Carbon.CBD"
         }
-    },
-    "archive": {
-        "exclude": [
-            ".github",
-            ".codacy.yaml",
-            ".editorconfig",
-            ".eslintignore",
-            ".eslintrc",
-            ".gitattributes",
-            ".gitignore",
-            ".jshintrc",
-            ".nvmrc",
-            ".postcssrc.yml",
-            ".prettierignore",
-            ".prettierrc",
-            ".stylelintrc",
-            ".yarnclean",
-            "CODE_OF_CONDUCT.md",
-            "package.json",
-            "yarn.lock"
-        ]
     }
 }
