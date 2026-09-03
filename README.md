@@ -1,44 +1,32 @@
 # Carbon.CBD
 
-`Carbon.CBD` helps you build complex content elements in Neos CMS (for example sliders, maps, tabs, or other multi-item components) with a smooth editor workflow.
-
-It provides a reusable backend/live-preview wrapper pattern around content collections, so editors can switch between editing and live view directly in the backend.
+`Carbon.CBD` provides building blocks for complex, multi-item content elements in Neos CMS, such as sliders, maps and tabs. It separates the editor's content-collection view from the live presentation and adds a toggle to the Neos UI.
 
 ## Features
 
-- Reusable component base for content elements with nested item nodes
-- Editor-friendly wrapper with backend/live toggle
-- Empty-state handling for components without items
-- Translation auto-include for backend labels
+- Reusable `Carbon.CBD:Component` Fusion prototype
+- Separate live and edit renderers
+- Toggle between live view and editing in the Neos UI
+- Empty-state handling for empty content collections
+- Translation auto-include for the UI
 
 ## Requirements
 
-- PHP package:
-  - `neos/neos`: `^8.4`
-  - `carbon/eel`: `^2.14`
+- `neos/neos` `^8.4`
 
 ## Installation
-
-Install via Composer:
 
 ```bash
 composer require carbon/cbd
 ```
 
-## How It Works
+The package automatically includes its Fusion prototypes and translations through [`Configuration/Settings.Neos.yaml`](Configuration/Settings.Neos.yaml).
 
-The package auto-includes Fusion via settings and exposes a reusable `Carbon.CBD:Component` base that:
+## Usage
 
-- Reads child nodes of your element
-- Passes data to your custom renderer type
-- Wraps output in `Carbon.CBD:Presentation.Wrapper`
-- Shows backend editing controls when in backend context
+### Element and item node types
 
-## Basic Usage
-
-### 1. Create an element node type
-
-Your element should inherit from `Carbon.CBD:Mixin.Element`.
+Make the parent element inherit from `Carbon.CBD:Mixin.Element` and its items from `Carbon.CBD:Mixin.Element.Item`:
 
 ```yaml
 "Vendor.Site:Content.Slider":
@@ -46,13 +34,11 @@ Your element should inherit from `Carbon.CBD:Mixin.Element`.
     "Carbon.CBD:Mixin.Element": true
   ui:
     label: "Slider"
-```
+  constraints:
+    nodeTypes:
+      "*": false
+      "Vendor.Site:Content.Slider.Item": true
 
-### 2. Create an item node type
-
-Items should inherit from `Carbon.CBD:Mixin.Element.Item`.
-
-```yaml
 "Vendor.Site:Content.Slider.Item":
   superTypes:
     "Carbon.CBD:Mixin.Element.Item": true
@@ -60,48 +46,83 @@ Items should inherit from `Carbon.CBD:Mixin.Element.Item`.
     label: "Slide"
 ```
 
-### 3. Restrict allowed children on your element
+`Carbon.CBD:Mixin.Element` is a content collection and allows no children by default. Define the allowed item types explicitly, as shown above. CBD item nodes are also blocked on regular `Neos.Neos:ContentCollection` nodes.
 
-```yaml
-"Vendor.Site:Content.Slider":
-  constraints:
-    nodeTypes:
-      "*": false
-      "Vendor.Site:Content.Slider.Item": true
-```
+### Fusion component
 
-### 4. Define a Fusion prototype for your element
+Use `Carbon.CBD:Component` as the base prototype for the element:
 
 ```elm
 prototype(Vendor.Site:Content.Slider) < prototype(Carbon.CBD:Component) {
-    type = 'Vendor.Site:Presentation.Slider'
-    data = Neos.Fusion:DataStructure {
-        autoplay = ${q(node).property('autoplay')}
-    }
+    live = Carbon.CBD:ChildContentRenderer
+    edit = Carbon.CBD:ContentCollectionRenderer
 }
 ```
 
-### 5. Render your live presentation type
+The default values are:
+
+- `live`: `Carbon.CBD:ChildContentRenderer`, which renders the child nodes without content-element wrappers
+- `edit`: `Carbon.CBD:ContentCollectionRenderer`, which renders the editable content collection and its empty state
+
+Override either property when the element needs a custom live presentation or edit renderer. A custom live renderer can still use `Carbon.CBD:ChildContentRenderer` for its child content:
 
 ```elm
-prototype(Vendor.Site:Presentation.Slider) < prototype(Neos.Fusion:Component) {
+prototype(Vendor.Site:Component.Slider) < prototype(Neos.Fusion:Component) {
+    content = Carbon.CBD:ChildContentRenderer
+
     renderer = afx`
-        <div
-          @if={props.count > 1}
-          class="my-slider"
-          data-autoplay={props.data.autoplay}
-        >
+        <div class="my-slider">
             {props.content}
         </div>
-        {props.count > 1 ? '' : props.content}
     `
 }
 ```
 
-## Notes
+`Carbon.CBD:Presentation.Wrapper` is used internally by `Carbon.CBD:Component`. In the backend it adds `data-__cbd-mode="live"` or `data-__cbd-mode="edit"` and attaches the edit renderer's insertion anchor. The Neos UI button switches these modes for elements that contain child nodes.
 
-- The package enables Fusion auto-include and translation auto-include via `Configuration/Settings.yaml`.
-- `Carbon.CBD:Mixin.Element.Item` is blocked on generic `Neos.Neos:ContentCollection` to avoid accidental insertion outside CBD elements.
+Make sure that you disable the content element wrapping if you use custom live elements:
+
+```elm
+prototype(Neos.Neos:ContentElementWrapping) {
+    @if.wrapping = false
+}
+prototype(Neos.Neos:Editable) {
+    renderer.editable.condition = false
+}
+```
+
+Here an example:
+
+```elm
+prototype(Vendor.Site:Content.Tabs.Container) < prototype(Carbon.CBD:Component) {
+    live >
+    live = Vendor.Site:Presentaion.Tabs {
+        prototype(Neos.Neos:ContentElementWrapping) {
+            @if.wrapping = false
+        }
+        prototype(Neos.Neos:Editable) {
+            renderer.editable.condition = false
+        }
+        // type is used for different views for the tabs
+        type = ${q(node).property('type')}
+
+        items = Neos.Fusion:Map {
+            items = ${q(node).children()}
+            itemName = 'node'
+            itemRenderer = Neos.Fusion:DataStructure {
+                label = ${q(node).property('title')}
+                icon = ${q(node).property('icon')}
+                content = Neos.Fusion:Loop {
+                    items = ${q(node).children()}
+                    itemRenderer = Neos.Neos:ContentCase
+                    itemName = 'node'
+                    iterationName = 'iterator'
+                }
+            }
+        }
+    }
+}
+```
 
 ## License
 
