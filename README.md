@@ -123,7 +123,3 @@ prototype(Vendor.Site:Content.Tabs.Container) < prototype(Carbon.CBD:Component) 
     }
 }
 ```
-
-## License
-
-GPL-3.0-or-later
