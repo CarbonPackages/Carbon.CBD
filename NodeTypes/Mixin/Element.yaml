@@ -7,3 +7,9 @@
   constraints:
     nodeTypes:
       '*': false
+  ui:
+    inspector:
+      views:
+        cbd:
+          view: 'Carbon.CBD/ToggleButton'
+          # You need to define the group and position for the toggle button in the inspector

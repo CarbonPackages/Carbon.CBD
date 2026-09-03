@@ -1,29 +1,19 @@
 import manifest from '@neos-project/neos-ui-extensibility';
-
+import ToolbarButton from './ToolbarButton';
 import ToggleButton from './ToggleButton';
-import { getClosestElementMatchesLiveSelector, getIframe } from './Helper';
-import { findNodeInGuestFrame } from "@neos-project/neos-ui-guest-frame";
+import { reloadIfNeeded } from './Helper';
 
-let timeout = null;
+manifest('Carbon.CBD', {}, (globalRegistry) => {
+    const viewsRegistry = globalRegistry.get("inspector").get("views");
 
-manifest('Carbon.CBD.ToggleButton', {}, (globalRegistry) => {
+    viewsRegistry.set(`Carbon.CBD/ToggleButton`, {
+        component: ToggleButton,
+    });
+
     const guestFrameRegistry = globalRegistry.get('@neos-project/neos-ui-guest-frame');
-    guestFrameRegistry.set('NodeToolbar/Buttons/ToggleButton', ToggleButton, 'start 999');
+    guestFrameRegistry.set('NodeToolbar/Buttons/ToolbarButton', ToolbarButton, 'start 999');
 
     const serverFeedbackHandlers = globalRegistry.get('serverFeedbackHandlers');
-
-    const reloadIfNeeded = (contextPath) => {
-        const currentElement = findNodeInGuestFrame(contextPath);
-        const cbdElement = getClosestElementMatchesLiveSelector(currentElement);
-        if (cbdElement) {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            timeout = setTimeout(() => {
-                getIframe()?.location.reload();
-            }, 100);
-        }
-    };
 
     serverFeedbackHandlers.set('Neos.Neos.Ui:RenderContentOutOfBand/CarbonCBD', ({ contextPath }) => {
         setTimeout(() => {

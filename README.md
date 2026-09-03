@@ -6,7 +6,7 @@
 
 - Reusable `Carbon.CBD:Component` Fusion prototype
 - Separate live and edit renderers
-- Toggle between live view and editing in the Neos UI
+- Synchronized live/edit toggles in the inline toolbar and inspector
 - Empty-state handling for empty content collections
 - Custom attributes for the backend wrapper and edit renderer
 - Translation auto-include for the UI
@@ -48,6 +48,24 @@ Make the parent element inherit from `Carbon.CBD:Mixin.Element` and its items fr
 ```
 
 `Carbon.CBD:Mixin.Element` is a content collection and allows no children by default. Define the allowed item types explicitly, as shown above. CBD item nodes are also blocked on regular `Neos.Neos:ContentCollection` nodes.
+
+The mixin registers the `Carbon.CBD/ToggleButton` inspector view under the `cbd` key. Assign the view to an inspector group and set its position on the concrete element node type:
+
+```yaml
+"Vendor.Site:Content.Slider":
+    ui:
+        inspector:
+            groups:
+                presentation:
+                    label: "Presentation"
+                    position: 10
+            views:
+                cbd:
+                    group: "presentation"
+                    position: 10
+```
+
+The inspector toggle and the button in the inline toolbar stay synchronized. Both are only shown for CBD elements that contain child nodes.
 
 ### Fusion component
 
