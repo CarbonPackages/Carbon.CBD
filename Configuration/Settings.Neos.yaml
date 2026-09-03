@@ -8,3 +8,8 @@ Neos:
         autoInclude:
           Carbon.CBD:
             - Main
+    Ui:
+      resources:
+        javascript:
+          Carbon.CBD.ToggleButton:
+            resource: 'resource://Carbon.CBD/Public/Plugin.js'

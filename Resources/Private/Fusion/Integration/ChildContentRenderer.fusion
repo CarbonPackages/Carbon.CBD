@@ -1,0 +1,17 @@
+prototype(Carbon.CBD:ChildContentRenderer) < prototype(Neos.Neos:ContentComponent) {
+    items = ${q(node).children()}
+
+    renderer = Neos.Fusion:Loop {
+        prototype(Neos.Neos:ContentElementWrapping) {
+            @if.wrapping = false
+        }
+        prototype(Neos.Neos:Editable) {
+            renderer.editable.condition = false
+        }
+
+        items = ${props.items}
+        itemRenderer = Neos.Neos:ContentCase
+        itemName = 'node'
+        iterationName = 'iterator'
+    }
+}

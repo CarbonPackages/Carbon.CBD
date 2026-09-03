@@ -1,46 +1,25 @@
 prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
-    contentCollectionRenderer = Neos.Neos:ContentCollectionRenderer {
-        prototype(Neos.Neos:ContentComponent) {
-            cbd = true
-        }
-        prototype(Neos.Neos:Content) {
-            cbd = true
-        }
-    }
-    count = ${q(node).children().count()}
-    editable = ${node.context.inBackend}
-    data = Neos.Fusion:DataStructure
+    editable = ${renderingMode.isEdit}
+    live = Carbon.CBD:ChildContentRenderer
+    edit = Carbon.CBD:ContentCollectionRenderer
 
-    # Add here your Fusion Prototype
-    type = ${null}
-
-    content = Neos.Fusion:Loop {
-        prototype(Neos.Neos:ContentElementWrapping) {
-            @if.wrapping = false
-        }
-        prototype(Neos.Neos:Editable) {
-            renderer.editable.condition = false
-        }
-        items = ${q(node).children()}
-        itemRenderer = Neos.Neos:ContentCase
-        itemName = 'node'
-        iterationName = 'iterator'
+    renderer = Carbon.CBD:Presentation.Wrapper {
+        editable = ${props.editable}
+        live = ${props.live}
+        edit = ${props.edit}
     }
 
-    renderer = afx`<Carbon.CBD:Presentation.Wrapper {...props} />`
-
-    @context.type = ${this.type}
-    @cache {
+   @cache {
         mode = 'cached'
+        maximumLifetime = ${q(node).context({'invisibleContentShown': true}).add(q(node).children()).cacheLifetime()}
         entryIdentifier {
-            collection = ${node}
-            type = ${type}
+            node = ${Neos.Caching.entryIdentifierForNode(node)}
+            editPreviewMode = ${renderingMode.name}
         }
         entryTags {
-            1 = ${Neos.Caching.descendantOfTag(node)}
-            2 = ${Neos.Caching.nodeTag(node)}
+            1 = ${Neos.Caching.nodeTag(node)}
+            2 = ${Neos.Caching.descendantOfTag(node)}
         }
-        maximumLifetime = ${q(node).context({'invisibleContentShown': true}).children().cacheLifetime()}
     }
 
     @exceptionHandler = 'Neos\\Neos\\Fusion\\ExceptionHandlers\\NodeWrappingHandler'

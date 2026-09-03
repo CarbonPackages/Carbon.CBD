@@ -1,80 +1,30 @@
 prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
-    @propTypes {
-        count = ${PropTypes.integer}
-        editable = ${PropTypes.boolean}
-        type = ${PropTypes.string}
-        content = ${PropTypes.string}
-        contentCollectionRenderer = ${PropTypes.string}
-    }
-
-    # Add here your Fusion Prototype
-    type = ${null}
-    count = 0
-    # Pass additional data
-    data = Neos.Fusion:DataStructure
+    // Is is possible to edit the element (renderingMode.isEdit)
     editable = false
-    content = ${null}
-    contentCollectionRenderer = ${null}
-    reloadOnFirstInit = false
-    class = ${null}
-    additionalClass = ${null}
 
-    # Render additional stuff before and after the contentCollectionRenderer
-    beforeContentCollectionRenderer = ${null}
-    afterContentCollectionRenderer = ${null}
+    // Add here you live view
+    // You can use Carbon.CBD:ChildContentRenderer here to render child nodes
+    // Carbon.CBD:ChildContentRenderer iterates through child nodes and disables content element wrapping
+    live = null
 
-    @if {
-        type = ${this.type}
-        visible = ${this.editable || this.count}
+    // Add here your edit view
+    // Most of the times you can use Carbon.CBD:ContentCollectionRenderer here
+    // The content collection need to have the attribute data-__cbd-content-collection
+    edit = null
+
+    renderer = Neos.Fusion:Join {
+        editMode = Neos.Fusion:Tag {
+            @if.render = ${props.editable}
+            attributes.data-__cbd-mode = ${props.live ? 'live' : 'edit'}
+            content = Neos.Fusion:Join {
+                edit = Neos.Fusion:Augmenter {
+                    data-__cbd-edit = true
+                    content = ${props.edit}
+                }
+                live = ${props.live}
+            }
+        }
+        frontendView = ${props.live}
+        frontendView.@if.render = ${!props.editable && props.live}
     }
-    l18n = Neos.Fusion:DataStructure {
-        edit = ${Carbon.Backend.translate('edit', 'Edit', [], 'Main', 'Carbon.CBD')}
-        live = ${Carbon.Backend.translate('live', 'Live view', [], 'Main', 'Carbon.CBD')}
-        noContent = ${Carbon.Backend.translate('noContent', 'No content has been created yet', [], 'Main', 'Carbon.CBD')}
-    }
-
-    renderer = afx`
-        <div
-            @if.set={props.editable}
-            class={Carbon.String.classNames(BEM.modifier('carbon-cbd', {edit: !props.count}), props.class, props.additionalClass)}
-            data-type={props.type}
-            data-reload={props.reloadOnFirstInit}
-        >
-            <Neos.Fusion:Augmenter class='carbon-cbd__live'>
-                <Neos.Fusion:Renderer
-                    type={props.type}
-                    element.content={props.content}
-                    element.count={props.count}
-                    element.data={props.data}
-                />
-            </Neos.Fusion:Augmenter>
-            <div class='carbon-cbd__edit'>
-                {props.beforeContentCollectionRenderer}
-                <div
-                    class='carbon-cbd__content-collection'
-                    data-warning={props.l18n.noContent}
-                    data-__neos-insertion-anchor
-                >
-                    {props.contentCollectionRenderer}
-                </div>
-                {props.afterContentCollectionRenderer}
-            </div>
-            <button type='button' class='carbon-cbd__switcher' onClick="carbonCBDswitcher(this)">
-                <span class={BEM.modifier('carbon-cbd__text', 'edit')}>
-                    {props.l18n.edit}
-                </span>
-                <span class={BEM.modifier('carbon-cbd__text', 'live')}>
-                    {props.l18n.live}
-                </span>
-            </button>
-        </div>
-        <Neos.Fusion:Renderer
-            @if.set={!props.editable}
-            type={props.type}
-            element.content={props.content}
-            element.count={props.count}
-            element.data={props.data}
-            element.additionalClass={props.additionalClass}
-        />
-    `
 }

@@ -1,0 +1,42 @@
+#neos-InlineToolbar-CarbonCBD {
+  float: left;
+}
+
+[data-__cbd-mode="live"] [data-__cbd-edit],
+[data-__cbd-mode="edit"] > :not([data-__cbd-edit]) {
+  display: none !important;
+}
+
+[data-__cbd-mode="edit"] {
+  margin-block: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px -5px rgb(0 0 0 / 0.25);
+}
+
+[data-__cbd-content-collection] {
+  min-height: 100px;
+
+  & > * {
+    margin-bottom: 30px;
+  }
+
+  &::after {
+    background: #f0ad4e;
+    box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    color: #fff;
+    content: attr(data-__cbd-content-collection);
+    display: block;
+    font-size: 20px;
+    margin: 30px auto;
+    padding: 5% 12px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  &:not(:empty)::after {
+    display: none !important;
+  }
+}
