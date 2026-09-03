@@ -12,8 +12,7 @@
         "backend"
     ],
     "require": {
-        "neos/neos": "^8.4",
-        "carbon/eel": "^2.14"
+        "neos/neos": "^8.4"
     },
     "authors": [
         {
@@ -26,12 +25,6 @@
     "autoload": {
         "psr-4": {
             "Carbon\\CBD\\": "Classes"
-        }
-    },
-    "extra": {
-        "installer-name": "Carbon.CBD",
-        "neos": {
-            "package-key": "Carbon.CBD"
         }
     }
 }
