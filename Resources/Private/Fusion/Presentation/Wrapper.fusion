@@ -12,19 +12,25 @@ prototype(Carbon.CBD:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     // The content collection need to have the attribute data-__cbd-content-collection
     edit = null
 
-    renderer = Neos.Fusion:Join {
-        editMode = Neos.Fusion:Tag {
-            @if.render = ${props.editable}
-            attributes.data-__cbd-mode = ${props.live ? 'live' : 'edit'}
-            content = Neos.Fusion:Join {
-                edit = Neos.Fusion:Augmenter {
-                    data-__cbd-edit = true
-                    content = ${props.edit}
-                }
-                live = ${props.live}
-            }
-        }
-        frontendView = ${props.live}
-        frontendView.@if.render = ${!props.editable && props.live}
-    }
+    // Add here your attributes for the wrapper element
+    wrapperAttributes = Neos.Fusion:DataStructure
+
+    // Add here your attributes for the edit element
+    editAttributes = Neos.Fusion:DataStructure
+
+    renderer = afx`
+        <div
+            @if={props.editable}
+            {...props.wrapperAttributes}
+            data-__cbd-mode={props.live ? 'live' : 'edit'}
+        >
+            <Neos.Fusion:Augmenter
+                {...props.editAttributes}
+                data-__cbd-edit
+                content={props.edit}
+            />
+            {props.live}
+        </div>
+        {!props.editable && props.live ? props.live : ''}
+    `
 }

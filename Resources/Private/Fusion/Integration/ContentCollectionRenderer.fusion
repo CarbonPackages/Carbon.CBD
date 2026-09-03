@@ -8,10 +8,13 @@ prototype(Carbon.CBD:ContentCollectionRenderer) < prototype(Neos.Fusion:Componen
         }
     }
 
+    attributes = Neos.Fusion:DataStructure
+
     noContentWaning = ${Carbon.Backend.translate('noContent', 'No content has been created yet', [], 'Main', 'Carbon.CBD')}
 
     renderer = afx`
         <div
+            {...props.attributes}
             data-__cbd-content-collection={props.noContentWaning}
             data-__neos-insertion-anchor
         >

@@ -2,11 +2,15 @@ prototype(Carbon.CBD:Component) < prototype(Neos.Neos:ContentComponent) {
     editable = ${renderingMode.isEdit}
     live = Carbon.CBD:ChildContentRenderer
     edit = Carbon.CBD:ContentCollectionRenderer
+    wrapperAttributes = Neos.Fusion:DataStructure
+    editAttributes = Neos.Fusion:DataStructure
 
     renderer = Carbon.CBD:Presentation.Wrapper {
         editable = ${props.editable}
         live = ${props.live}
         edit = ${props.edit}
+        wrapperAttributes = ${props.wrapperAttributes}
+        editAttributes = ${props.editAttributes}
     }
 
    @cache {

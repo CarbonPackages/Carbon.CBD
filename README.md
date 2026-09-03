@@ -8,6 +8,7 @@
 - Separate live and edit renderers
 - Toggle between live view and editing in the Neos UI
 - Empty-state handling for empty content collections
+- Custom attributes for the backend wrapper and edit renderer
 - Translation auto-include for the UI
 
 ## Requirements
@@ -63,6 +64,8 @@ The default values are:
 
 - `live`: `Carbon.CBD:ChildContentRenderer`, which renders the child nodes without content-element wrappers
 - `edit`: `Carbon.CBD:ContentCollectionRenderer`, which renders the editable content collection and its empty state
+- `wrapperAttributes`: attributes for the outer wrapper rendered in the Neos backend
+- `editAttributes`: attributes added to the root element of the edit renderer
 
 Override either property when the element needs a custom live presentation or edit renderer. A custom live renderer can still use `Carbon.CBD:ChildContentRenderer` for its child content:
 
@@ -75,6 +78,26 @@ prototype(Vendor.Site:Component.Slider) < prototype(Neos.Fusion:Component) {
             {props.content}
         </div>
     `
+}
+```
+
+Attributes can be added to the backend wrapper and the edit view independently:
+
+```elm
+prototype(Vendor.Site:Content.Slider) < prototype(Carbon.CBD:Component) {
+    wrapperAttributes.class = 'slider-backend-wrapper'
+    editAttributes {
+        class = 'slider-edit-view'
+        data-component = 'slider'
+    }
+}
+```
+
+When using `Carbon.CBD:ContentCollectionRenderer` directly, its root element can also be configured through `attributes`:
+
+```elm
+prototype(Vendor.Site:Content.Slider) < prototype(Carbon.CBD:Component) {
+    edit.attributes.class = 'slider-content-collection'
 }
 ```
 
@@ -94,9 +117,9 @@ prototype(Neos.Neos:Editable) {
 Here an example:
 
 ```elm
-prototype(Vendor.Site:Content.Tabs.Container) < prototype(Carbon.CBD:Component) {
+prototype(Vendor.Site:Content.Tabs) < prototype(Carbon.CBD:Component) {
     live >
-    live = Vendor.Site:Presentaion.Tabs {
+    live = Vendor.Site:Presentation.Tabs {
         prototype(Neos.Neos:ContentElementWrapping) {
             @if.wrapping = false
         }
