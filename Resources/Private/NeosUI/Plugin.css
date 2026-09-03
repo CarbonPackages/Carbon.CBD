@@ -17,10 +17,6 @@
 [data-__cbd-content-collection] {
   min-height: 100px;
 
-  & > * {
-    margin-bottom: 30px;
-  }
-
   &::after {
     background: #f0ad4e;
     box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
