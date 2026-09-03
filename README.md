@@ -53,16 +53,16 @@ The mixin registers the `Carbon.CBD/ToggleButton` inspector view under the `cbd`
 
 ```yaml
 "Vendor.Site:Content.Slider":
-    ui:
-        inspector:
-            groups:
-                presentation:
-                    label: "Presentation"
-                    position: 10
-            views:
-                cbd:
-                    group: "presentation"
-                    position: 10
+  ui:
+    inspector:
+      groups:
+        presentation:
+          label: "Presentation"
+          position: 10
+      views:
+        cbd:
+          group: "presentation"
+          position: 10
 ```
 
 The inspector toggle and the button in the inline toolbar stay synchronized. Both are only shown for CBD elements that contain child nodes.
