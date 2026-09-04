@@ -11,21 +11,14 @@
     "css": "lightningcss --minify --bundle Resources/Private/NeosUI/Plugin.css -o Resources/Public/Plugin.css",
     "build": "pnpm css && node build.mjs --production",
     "watch": "pnpm css && node build.mjs --watch",
-    "dev": "pnpm css && node build.mjs --dev",
-    "pipeline": "pnpm install --silent;pnpm build"
+    "dev": "pnpm css && node build.mjs --dev"
   },
   "dependencies": {
-    "@eslint/js": "^10.0.1",
     "@neos-project/neos-ui-extensibility": "~8.4.4",
     "@neos-project/react-ui-components": "~8.4.4",
     "esbuild": "^0.28.2",
-    "eslint": "^10.9.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
     "lightningcss-cli": "^1.33.0",
-    "prettier": "^3.9.6",
-    "stylelint": "^17.14.1",
-    "stylelint-config-standard": "^40.0.0"
+    "prettier": "^3.9.6"
   },
   "packageManager": "pnpm@11.25.0+sha512.5cde925b4f075f725eb71fbae18a42ffe784524789f19b61c731cb8721ec28aaee160e01a8d5af4fedb2a42cdbf300efe23db356b0d4a17b4d63e11f8ab7c956"
 }

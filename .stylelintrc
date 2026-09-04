@@ -1,8 +1,0 @@
-{
-  "extends": "stylelint-config-standard",
-  "ignoreFiles": ["**/Private/Fusion/**", "node_modules/**"],
-  "rules": {
-    "selector-class-pattern": null,
-    "no-descending-specificity": null
-  }
-}
