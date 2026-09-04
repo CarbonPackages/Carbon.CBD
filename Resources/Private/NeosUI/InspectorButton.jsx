@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Icon, Button } from "@neos-project/react-ui-components";
-import { decorateFunction, eventBus } from "./Helper";
+import { decorateFunction, createEventBus } from "./Helper";
 
-function ToggleButton({ labels, focusedNodePath }) {
+function InspectorButton({ labels, focusedNodePath }) {
     const [isEdit, setIsEdit] = useState(false);
     const [isCBD, setIsCBD] = useState(false);
+    const [eventBus, setEventBus] = useState(null);
 
     useEffect(() => {
-        eventBus.on("Carbon.CBD:ToolbarButton", ({ isEdit, isCBD }) => {
+        console.log("init inspector button");
+        const eventBus = createEventBus(focusedNodePath, { from: "Inspector", to: "Toolbar" }, ({ isEdit, isCBD }) => {
             setIsEdit(isEdit);
             setIsCBD(isCBD);
         });
+        setEventBus(eventBus);
+
+        eventBus.on();
         return () => {
-            eventBus.remove("Carbon.CBD:ToolbarButton");
+            console.log("remove inspector button");
+            eventBus.remove();
         };
-    }, []);
+    }, [focusedNodePath]);
 
     if (!isCBD) {
         return null;
@@ -24,7 +30,7 @@ function ToggleButton({ labels, focusedNodePath }) {
         <Button
             style="lighter"
             onClick={() => {
-                eventBus.dispatch("Carbon.CBD:ToggleButton", !isEdit);
+                eventBus?.dispatch({ isEdit: !isEdit });
                 setIsEdit(!isEdit);
             }}
         >
@@ -34,4 +40,4 @@ function ToggleButton({ labels, focusedNodePath }) {
     );
 }
 
-export default decorateFunction(ToggleButton);
+export default decorateFunction(InspectorButton);

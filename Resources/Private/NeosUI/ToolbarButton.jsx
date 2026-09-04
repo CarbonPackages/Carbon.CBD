@@ -9,7 +9,7 @@ import {
     contentCollectionHasChildren,
     getIframe,
     decorateFunction,
-    eventBus,
+    createEventBus,
 } from "./Helper";
 
 function ToolbarButton({ labels, focusedNodePath }) {
@@ -17,6 +17,7 @@ function ToolbarButton({ labels, focusedNodePath }) {
     const [node, setNode] = useState(null);
     const [isCBD, setIsCBD] = useState(false);
     const [iframeDocument, setIframeDocument] = useState(null);
+    const [eventBus, setEventBus] = useState(null);
 
     const getIframeDocument = () => {
         if (iframeDocument) {
@@ -28,45 +29,49 @@ function ToolbarButton({ labels, focusedNodePath }) {
     };
 
     useEffect(() => {
-        eventBus.on("Carbon.CBD:ToggleButton", (isEdit) => {
+        console.log("init toolbar button");
+
+        const eventBus = createEventBus(focusedNodePath, { from: "Toolbar", to: "Inspector" }, ({ isEdit }) => {
             setIsEdit(isEdit);
         });
-        return () => {
-            eventBus.remove("Carbon.CBD:ToggleButton");
-        };
-    }, []);
 
-    useEffect(() => {
-        const foundNode = findNodeInGuestFrame(focusedNodePath);
+        let foundNode = findNodeInGuestFrame(focusedNodePath);
         const mode = getMode(foundNode);
         const hasChildren = contentCollectionHasChildren(foundNode);
 
+        let cbd = true;
+        let edit = mode === "edit";
+
         if (!mode || !hasChildren) {
-            setIsCBD(false);
-            setIsEdit(false);
-            setNode(null);
-            return;
+            cbd = false;
+            foundNode = null;
         }
 
-        setIsCBD(true);
-        setIsEdit(mode === "edit");
+        setIsCBD(cbd);
+        setIsEdit(edit);
         setNode(foundNode);
+        setEventBus(eventBus);
+
+        eventBus.on();
+        eventBus.dispatch({ isEdit: edit, isCBD: cbd });
+
+        return () => {
+            console.log("remove toolbar button");
+            eventBus.remove();
+        };
     }, [focusedNodePath]);
 
     useEffect(() => {
         if (!node) {
             return;
         }
+        eventBus?.dispatch({ isEdit: !!isEdit, isCBD: true });
         if (isEdit) {
             setMode(node, "edit");
             return;
         }
         getIframeDocument()?.location.reload();
     }, [isEdit]);
-
-    useEffect(() => {
-        eventBus.dispatch("Carbon.CBD:ToolbarButton", { isEdit, isCBD });
-    }, [isEdit, isCBD]);
 
     if (!isCBD) {
         return null;

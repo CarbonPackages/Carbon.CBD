@@ -67,14 +67,30 @@ export function decorateFunction(Component) {
     return neosifier(connector(Component));
 }
 
-export const eventBus = {
-    on(event, callback) {
-        document.addEventListener(event, (e) => callback(e.detail));
-    },
-    dispatch(event, data) {
-        document.dispatchEvent(new CustomEvent(event, { detail: data }));
-    },
-    remove(event, callback) {
-        document.removeEventListener(event, callback);
-    },
-};
+function normalizeEventName(path) {
+    path = path.split("@")[0].replace("/sites/", "").replaceAll("/", "_");
+    return `Carbon.CBD:${path}`;
+}
+
+export function createEventBus(path, { from, to }, callback) {
+    const eventName = normalizeEventName(path);
+    const callbackWrapper = ({ detail }) => {
+        if (detail.target === to) {
+            callback(detail);
+        }
+    };
+
+    return {
+        on() {
+            document.addEventListener(eventName, callbackWrapper);
+        },
+        dispatch(data) {
+            setTimeout(() => {
+                document.dispatchEvent(new CustomEvent(eventName, { detail: { ...data, target: from } }));
+            }, 100);
+        },
+        remove() {
+            document.removeEventListener(eventName, callbackWrapper);
+        },
+    };
+}

@@ -11,5 +11,5 @@
     inspector:
       views:
         cbd:
-          view: 'Carbon.CBD/ToggleButton'
+          view: 'Carbon.CBD/InspectorButton'
           # You need to define the group and position for the toggle button in the inspector

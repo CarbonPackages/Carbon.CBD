@@ -49,7 +49,7 @@ Make the parent element inherit from `Carbon.CBD:Mixin.Element` and its items fr
 
 `Carbon.CBD:Mixin.Element` is a content collection and allows no children by default. Define the allowed item types explicitly, as shown above. CBD item nodes are also blocked on regular `Neos.Neos:ContentCollection` nodes.
 
-The mixin registers the `Carbon.CBD/ToggleButton` inspector view under the `cbd` key. Assign the view to an inspector group and set its position on the concrete element node type:
+The mixin registers the `Carbon.CBD/InspectorButton` inspector view under the `cbd` key. Assign the view to an inspector group and set its position on the concrete element node type:
 
 ```yaml
 "Vendor.Site:Content.Slider":

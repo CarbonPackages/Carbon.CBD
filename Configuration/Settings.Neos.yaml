@@ -11,5 +11,5 @@ Neos:
     Ui:
       resources:
         javascript:
-          Carbon.CBD.ToggleButton:
+          Carbon.CBD.Plugin:
             resource: 'resource://Carbon.CBD/Public/Plugin.js'
