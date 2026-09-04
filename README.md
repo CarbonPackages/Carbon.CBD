@@ -1,5 +1,7 @@
 # Carbon.CBD
 
+**CBD** stands for **Component-Based Design**.
+
 `Carbon.CBD` provides building blocks for complex, multi-item content elements in Neos CMS, such as sliders, maps and tabs. It separates the editor's content-collection view from the live presentation and adds a toggle to the Neos UI.
 
 ## Features
